@@ -50,7 +50,11 @@ public class MyController {
                     hatSwitches.add(component.getPollData());
                 }
                 if (component.isAnalog()) {
-                    axis.put(component.getName(), component.getPollData());
+                    float deadzone = component.getDeadZone();
+                    float pollData = component.getPollData();
+                    if (Math.abs(pollData) >= Math.abs(deadzone)) {
+                        axis.put(component.getName(), component.getPollData());
+                    }
                 } else if (componentIdentifier.getName().matches("^[0-9]*$")) {
                     if (component.getPollData() == 1) {
                         buttonsDown.add(component.getName());

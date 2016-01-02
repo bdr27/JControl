@@ -31,14 +31,21 @@ public class MockButtonAction extends AButtonAction {
         //Go through buttons up
     }
 
-    private void ExecuteAxis()
-    {
+    private void ExecuteAxis() {
         try {
-            float x = axis.get("X Axis");
-            float y = axis.get("Y Axis");        
+            String xKey = "X Axis";
+            String yKey = "Y Axis";
+            float x = 0;
+            float y = 0;
+            if (axis.containsKey(xKey)) {
+                x = axis.get(xKey);
+            }
+            if (axis.containsKey(yKey)) {
+                y = axis.get(yKey);
+            }
             Point location = MouseInfo.getPointerInfo().getLocation();
-            location.x += (int)(x * 100);
-            location.y += (int)(y * 100);
+            location.x += (int) (x * 100);
+            location.y += (int) (y * 100);
             Robot rob = new Robot();
             rob.mouseMove(location.x, location.y);
         } catch (AWTException ex) {
