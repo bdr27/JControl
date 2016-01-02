@@ -44,6 +44,7 @@ public class MyController {
             hatSwitches = setFloatArrayList(hatSwitches);
 
             Component[] components = controller.getComponents();
+            //Needs cleaning up
             for (Component component : components) {
                 Identifier componentIdentifier = component.getIdentifier();
                 if (componentIdentifier == Component.Identifier.Axis.POV) {
@@ -53,7 +54,11 @@ public class MyController {
                     float deadzone = component.getDeadZone();
                     float pollData = component.getPollData();
                     if (Math.abs(pollData) >= Math.abs(deadzone)) {
-                        axis.put(component.getName(), component.getPollData());
+                        axis.put(component.getName(), pollData);
+                    }
+                    else
+                    {
+                        axis.put(component.getName(), 0f);
                     }
                 } else if (componentIdentifier.getName().matches("^[0-9]*$")) {
                     if (component.getPollData() == 1) {
