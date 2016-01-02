@@ -24,60 +24,63 @@ public class MyController {
     private ArrayList<String> buttonsDown;
     private ArrayList<String> buttonsUp;
     private ArrayList<Float> hatSwitches;
-    private ArrayList<String> previousButtonsDown;    
+    private ArrayList<String> previousButtonsDown;
 
     public MyController(Controller controller) {
         this.controller = controller;
     }
 
-    public void poll() {
-        if (MY_DEBUG) {
-            System.out.println("Polling controller: " + controller.getName());
-        }
-        //Clear up previous buttons
-        axis = setMaps(axis);
-        buttonsDown = setStringArrayList(buttonsDown);
-        buttonsUp = setStringArrayList(buttonsUp);
-        hatSwitches = setFloatArrayList(hatSwitches);
-
-        controller.poll();
-        Component[] components = controller.getComponents();
-        for (Component component : components) {
-            Identifier componentIdentifier = component.getIdentifier();
-            if (componentIdentifier == Component.Identifier.Axis.POV) {
-                hatSwitches.add(component.getPollData());
-            }
-            if (component.isAnalog()) {
-                axis.put(component.getName(), component.getPollData());
-            }
-            else if (componentIdentifier.getName().matches("^[0-9]*$")) {
-                if (component.getPollData() == 1) {
-                    buttonsDown.add(component.getName());
-                }
-            }
+    public boolean poll() {
+        boolean validPoll = false;
+        if (controller.poll()) {
+            validPoll = true;
             if (MY_DEBUG) {
-                System.out.println("component: " + component.getName() + " value: " + component.getPollData());
+                System.out.println("Polling controller: " + controller.getName());
             }
-        }
-        if (MY_DEBUG) {
-            System.out.print("Buttons up: ");
-        }
-        if (previousButtonsDown != null) {
-            for (String button : previousButtonsDown) {
-                if (!buttonsDown.contains(button)) {
-                    buttonsUp.add(button);
-                    if (MY_DEBUG) {
-                        System.out.print(button + " ");
+            //Clear up previous buttons
+            axis = setMaps(axis);
+            buttonsDown = setStringArrayList(buttonsDown);
+            buttonsUp = setStringArrayList(buttonsUp);
+            hatSwitches = setFloatArrayList(hatSwitches);
+
+            Component[] components = controller.getComponents();
+            for (Component component : components) {
+                Identifier componentIdentifier = component.getIdentifier();
+                if (componentIdentifier == Component.Identifier.Axis.POV) {
+                    hatSwitches.add(component.getPollData());
+                }
+                if (component.isAnalog()) {
+                    axis.put(component.getName(), component.getPollData());
+                } else if (componentIdentifier.getName().matches("^[0-9]*$")) {
+                    if (component.getPollData() == 1) {
+                        buttonsDown.add(component.getName());
                     }
                 }
+                if (MY_DEBUG) {
+                    System.out.println("component: " + component.getName() + " value: " + component.getPollData());
+                }
             }
             if (MY_DEBUG) {
-                System.out.println("");
+                System.out.print("Buttons up: ");
             }
-        }
+            if (previousButtonsDown != null) {
+                for (String button : previousButtonsDown) {
+                    if (!buttonsDown.contains(button)) {
+                        buttonsUp.add(button);
+                        if (MY_DEBUG) {
+                            System.out.print(button + " ");
+                        }
+                    }
+                }
+                if (MY_DEBUG) {
+                    System.out.println("");
+                }
+            }
 
-        previousButtonsDown = setStringArrayList(previousButtonsDown);
-        previousButtonsDown = new ArrayList(buttonsDown);
+            previousButtonsDown = setStringArrayList(previousButtonsDown);
+            previousButtonsDown = new ArrayList(buttonsDown);
+        }
+        return validPoll;
     }
 
     public Map<String, Float> getAxis() {
@@ -86,26 +89,23 @@ public class MyController {
         }
         return axis;
     }
-    
-    public ArrayList<String> getButtonsDown()
-    {
-        if(buttonsDown == null){
+
+    public ArrayList<String> getButtonsDown() {
+        if (buttonsDown == null) {
             buttonsDown = new ArrayList();
         }
         return buttonsDown;
     }
-    
-    public ArrayList<String> getButtonsUp()
-    {
-        if(buttonsUp == null){
+
+    public ArrayList<String> getButtonsUp() {
+        if (buttonsUp == null) {
             buttonsUp = new ArrayList();
         }
         return buttonsUp;
     }
-    
-    public ArrayList<Float> getHatSwitches()
-    {
-        if(hatSwitches == null){
+
+    public ArrayList<Float> getHatSwitches() {
+        if (hatSwitches == null) {
             hatSwitches = new ArrayList();
         }
         return hatSwitches;

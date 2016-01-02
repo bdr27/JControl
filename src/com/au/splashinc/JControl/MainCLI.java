@@ -5,6 +5,8 @@
  */
 package com.au.splashinc.JControl;
 
+import com.au.splashinc.JControl.ControllerAction.AButtonAction;
+import com.au.splashinc.JControl.ControllerAction.MockButtonAction;
 import com.au.splashinc.JControl.ControllerAction.MyController;
 import com.au.splashinc.JControl.Util.MyControllers;
 import java.awt.AWTException;
@@ -27,19 +29,21 @@ public class MainCLI {
         ArrayList<Controller> controllers = myControllers.GetControllers();
         myControllers = new MyControllers(true);
         ArrayList<Controller> controllers2 = myControllers.GetControllers();
+        
 
         System.out.println("Length without all USB: " + controllers.size());
         System.out.println("Length with all USB: " + controllers2.size());
         if (controllers.size() > 0) {
             MyController controller = new MyController(controllers.get(0));
+            AButtonAction buttonAction = new MockButtonAction(controller);
             while (true) {
-                controller.poll();
+                buttonAction.Execute();
+                /*controller.poll();
                 ArrayList<String> buttonsUp = controller.getButtonsDown();
                 ArrayList<String> buttonsDown = controller.getButtonsUp();
                 ArrayList<Float> hatSwitches = controller.getHatSwitches();
-                Map<String, Float> axises = controller.getAxis();
-                
-                Thread.sleep(100);
+                Map<String, Float> axises = controller.getAxis();*/                
+                Thread.sleep(20);
             }
         }
     }
