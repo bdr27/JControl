@@ -9,6 +9,7 @@ import java.awt.AWTException;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.input.KeyCode;
@@ -19,48 +20,49 @@ import javafx.scene.input.KeyCode;
  */
 public class MockButtonAction extends AButtonAction {
 
-    public MockButtonAction(MyController controller) {
+    Robot rob;
+
+    public MockButtonAction(MyController controller) throws AWTException {
         super(controller);
+        rob = new Robot();
     }
 
     @Override
     protected void ExecuteAxis() {
-        try {
-            String xKey = "X Axis";
-            String yKey = "Y Axis";
-            float x = 0;
-            float y = 0;
-            if (axis.containsKey(xKey)) {
-                x = axis.get(xKey);
-            }
-            if (axis.containsKey(yKey)) {
-                y = axis.get(yKey);
-            }
-            Point location = MouseInfo.getPointerInfo().getLocation();
-            location.x += (int) (x * 100);
-            location.y += (int) (y * 100);
-            Robot rob = new Robot();
-            rob.mouseMove(location.x, location.y);
-        } catch (AWTException ex) {
-            Logger.getLogger(MockButtonAction.class.getName()).log(Level.SEVERE, null, ex);
+        String xKey = "X Axis";
+        String yKey = "Y Axis";
+        float x = 0;
+        float y = 0;
+        if (axis.containsKey(xKey)) {
+            x = axis.get(xKey);
         }
+        if (axis.containsKey(yKey)) {
+            y = axis.get(yKey);
+        }
+        Point location = MouseInfo.getPointerInfo().getLocation();
+        location.x += (int) (x * 100);
+        location.y += (int) (y * 100);
+        rob.mouseMove(location.x, location.y);
     }
 
     @Override
     protected void ExecuteButtonsDown() {
         if (buttonsDown.contains(("Button 0"))) {
-            try {
-                Robot rob = new Robot();
-                rob.keyPress(KeyCode.A.ordinal());
-            } catch (AWTException ex) {
-                Logger.getLogger(MockButtonAction.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            rob.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        }else if(buttonsDown.contains("Button 1"))
+        {
+            rob.mousePress(InputEvent.BUTTON3_DOWN_MASK);
         }
     }
 
     @Override
     protected void ExecuteButtonsUp() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (buttonsDown.contains(("Button 0"))) {
+            rob.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        }else if(buttonsDown.contains("Button 1"))
+        {
+            rob.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+        }
     }
 
     @Override

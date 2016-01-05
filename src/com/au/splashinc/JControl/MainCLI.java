@@ -34,6 +34,7 @@ public class MainCLI {
         System.out.println("Length without all USB: " + controllers.size());
         System.out.println("Length with all USB: " + controllers2.size());
         if (controllers.size() > 0) {
+            try{
             MyController controller = new MyController(controllers.get(0));
             AButtonAction buttonAction = new MockButtonAction(controller);
             while (true) {
@@ -44,6 +45,9 @@ public class MainCLI {
                 ArrayList<Float> hatSwitches = controller.getHatSwitches();
                 Map<String, Float> axises = controller.getAxis();*/                
                 Thread.sleep(20);
+            }
+            }catch(AWTException ex){
+                System.out.println(ex.toString());
             }
         }
     }
