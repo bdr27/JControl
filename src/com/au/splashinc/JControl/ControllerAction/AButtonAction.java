@@ -25,7 +25,17 @@ public abstract class AButtonAction {
         this.controller = controller;
     }
     
-    protected abstract void ExecuteButtonAction();
+    private void ExecuteButtonAction(){
+        ExecuteAxis();
+        ExecuteButtonsDown();
+        ExecuteButtonsUp();
+        ExecuteHatSwitches();
+    }
+    
+    protected abstract void ExecuteAxis();
+    protected abstract void ExecuteButtonsDown();
+    protected abstract void ExecuteButtonsUp();
+    protected abstract void ExecuteHatSwitches();
     
     public void Execute(){
         if (controller.poll()){

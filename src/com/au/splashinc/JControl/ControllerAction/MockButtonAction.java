@@ -11,6 +11,7 @@ import java.awt.Point;
 import java.awt.Robot;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.input.KeyCode;
 
 /**
  *
@@ -23,15 +24,7 @@ public class MockButtonAction extends AButtonAction {
     }
 
     @Override
-    protected void ExecuteButtonAction() {
-        ExecuteAxis();
-        //Go through axises
-        //Go through pov
-        //Go through buttons down
-        //Go through buttons up
-    }
-
-    private void ExecuteAxis() {
+    protected void ExecuteAxis() {
         try {
             String xKey = "X Axis";
             String yKey = "Y Axis";
@@ -51,5 +44,27 @@ public class MockButtonAction extends AButtonAction {
         } catch (AWTException ex) {
             Logger.getLogger(MockButtonAction.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    protected void ExecuteButtonsDown() {
+        if (buttonsDown.contains(("Button 0"))) {
+            try {
+                Robot rob = new Robot();
+                rob.keyPress(KeyCode.A.ordinal());
+            } catch (AWTException ex) {
+                Logger.getLogger(MockButtonAction.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    protected void ExecuteButtonsUp() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected void ExecuteHatSwitches() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
