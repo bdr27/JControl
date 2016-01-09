@@ -21,6 +21,9 @@ public class MyController {
 
     private final Controller controller;
     private Map<String, Float> axis;
+    private int buttonCount;
+    private int axisCount;
+    private int hatSwitchCount;
     private ArrayList<String> buttonsDown;
     private ArrayList<String> buttonsUp;
     private ArrayList<Float> hatSwitches;
@@ -28,6 +31,34 @@ public class MyController {
 
     public MyController(Controller controller) {
         this.controller = controller;
+        controllerSetup();
+    }
+    
+    private void controllerSetup()
+    {
+        buttonCount = 0;
+        axisCount = 0;
+        hatSwitchCount = 0;
+        //potentially throw an exception
+        if(controller.poll()){
+            Component[] components = controller.getComponents();
+            for(Component comp : components){
+                Identifier id = comp.getIdentifier();
+                if(id == Component.Identifier.Axis.POV){
+                    hatSwitchCount++;
+                }else if(comp.isAnalog()){
+                    axisCount++;
+                }else if (id.getName().matches("^[0-9]*$")) {
+                    buttonCount++;
+                }
+            }
+            if(MY_DEBUG){
+                System.out.println("Controller name: " + getControllerName());
+                System.out.println("Axis count: " + getAxisCount());
+                System.out.println("Button count: " + getButtonCount());                
+                System.out.println("Hat Switch count: " + getHatSwitchCount());
+            }
+        }
     }
 
     public boolean poll() {
@@ -118,6 +149,22 @@ public class MyController {
             hatSwitches = new ArrayList();
         }
         return hatSwitches;
+    }
+    
+    public  int getAxisCount(){
+        return axisCount;
+    }
+    
+    public int getButtonCount(){
+        return buttonCount;
+    }
+    
+    public int getHatSwitchCount(){
+        return hatSwitchCount;
+    }
+    
+    public String getControllerName(){
+        return controller.getName();
     }
 
     private Map<String, Float> setMaps(Map<String, Float> map) {

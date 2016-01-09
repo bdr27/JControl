@@ -17,6 +17,8 @@ import net.java.games.input.Controller;
 import net.java.games.input.Controller.Type;
 import net.java.games.input.ControllerEnvironment;
 import net.java.games.input.EventQueue;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  *
@@ -33,19 +35,17 @@ public class MainCLI {
 
         System.out.println("Length without all USB: " + controllers.size());
         System.out.println("Length with all USB: " + controllers2.size());
+        JSONObject obj = new JSONObject();
+        obj.put("Hello", "World");
+        System.out.println("JSON String: " + obj.toJSONString());
         if (controllers.size() > 0) {
             try{
             MyController controller = new MyController(controllers.get(0));
             AButtonAction buttonAction = new MockButtonAction(controller);
-            while (true) {
-                buttonAction.Execute();
-                /*controller.poll();
-                ArrayList<String> buttonsUp = controller.getButtonsDown();
-                ArrayList<String> buttonsDown = controller.getButtonsUp();
-                ArrayList<Float> hatSwitches = controller.getHatSwitches();
-                Map<String, Float> axises = controller.getAxis();*/                
+            /*while (true) {
+                buttonAction.Execute();            
                 Thread.sleep(20);
-            }
+            }*/
             }catch(AWTException ex){
                 System.out.println(ex.toString());
             }
