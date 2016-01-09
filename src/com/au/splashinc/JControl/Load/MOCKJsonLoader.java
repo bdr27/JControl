@@ -9,6 +9,15 @@ package com.au.splashinc.JControl.Load;
  *
  * @author bob_l
  */
-public class MOCKJsonLoader {
+public class MOCKJsonLoader extends AControllerLoader{
+
+    public MOCKJsonLoader(String location) {
+        super(location);
+    }
+
+    @Override
+    public void LoadConfig() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
