@@ -42,6 +42,9 @@ public class MainCLI {
             try{
             MyController controller = new MyController(controllers.get(0));
             AButtonAction buttonAction = new MockButtonAction(controller);
+            int countButton = controller.getButtonCount();
+            int axisCount = controller.getAxisCount();
+            int hatSwitch = controller.getHatSwitchCount();
             /*while (true) {
                 buttonAction.Execute();            
                 Thread.sleep(20);
