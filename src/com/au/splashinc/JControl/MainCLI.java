@@ -8,6 +8,8 @@ package com.au.splashinc.JControl;
 import com.au.splashinc.JControl.ControllerAction.AButtonAction;
 import com.au.splashinc.JControl.ControllerAction.MockButtonAction;
 import com.au.splashinc.JControl.ControllerAction.MyController;
+import com.au.splashinc.JControl.Load.AControllerLoader;
+import com.au.splashinc.JControl.Load.MOCKJsonLoader;
 import com.au.splashinc.JControl.Util.MyControllers;
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -35,9 +37,12 @@ public class MainCLI {
 
         System.out.println("Length without all USB: " + controllers.size());
         System.out.println("Length with all USB: " + controllers2.size());
-        JSONObject obj = new JSONObject();
-        obj.put("Hello", "World");
-        System.out.println("JSON String: " + obj.toJSONString());
+        
+        AControllerLoader mjs = new MOCKJsonLoader("This is a test");
+        mjs.LoadConfig();
+//JSONObject obj = new JSONObject();
+        //obj.put("Hello", "World");
+        //System.out.println("JSON String: " + obj.toJSONString());
         if (controllers.size() > 0) {
             try{
             MyController controller = new MyController(controllers.get(0));

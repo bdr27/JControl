@@ -5,6 +5,7 @@
  */
 package com.au.splashinc.JControl.Load;
 
+import javax.swing.KeyStroke;
 import org.json.simple.JSONObject;
 
 /**
@@ -21,7 +22,10 @@ public class MOCKJsonLoader extends AControllerLoader{
     @Override
     public void LoadConfig() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        json.put("name", "testController");
+        json.put("name", "MOCK JSON");
+        KeyStroke ks = KeyStroke.getKeyStroke('k', 0);
+        System.out.println(ks.getKeyCode());
+        json.put("Button 1", "k");
     }
     
 }
