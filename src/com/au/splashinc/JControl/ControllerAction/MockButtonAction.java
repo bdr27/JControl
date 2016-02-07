@@ -53,6 +53,7 @@ public class MockButtonAction extends AButtonAction {
         {
             rob.mousePress(InputEvent.BUTTON3_DOWN_MASK);
         }
+        
     }
 
     @Override
