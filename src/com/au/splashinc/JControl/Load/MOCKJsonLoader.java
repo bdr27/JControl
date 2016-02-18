@@ -22,11 +22,11 @@ public class MOCKJsonLoader extends AControllerLoader{
     @Override
     public void LoadConfig() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //JSON organised in [Button/Axis/POV],{[TypeofAction],[Value]}
         KeyStroke ks = KeyStroke.getKeyStroke('k', 0);
         json.put("name", "MOCK JSON");
         JSONObject tj = new JSONObject();
-        tj.put("SimpleButton", ks.getKeyCode());
-        
+        tj.put("SimpleButton", ks.getKeyCode());        
         json.put("Button1", tj);
         System.out.println(json.toJSONString());
         //KeyStroke ks = KeyStroke.getKeyStroke('k', 0);
