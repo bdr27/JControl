@@ -26,19 +26,19 @@ public class MOCKJsonLoader extends AControllerLoader{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //JSON organised in [Button/Axis/POV],{[TypeofAction],[Value]}
         /*W- up - LeftStick Up
-A - Left - Right Stick Left
-S - back - LeftStick Down
-d - right - Right Stick Right
-Space - jump - A
-c - Crouch - Right Stick In
-Mouse 1 - primary fire - Right Trigger
-Shift - Run - Left Stick in
-Capslock - Walk - LB
-e - Open/interact - B
-R - Secondary Fire - Left Trigger
-Pageup - Look Up - Right Stick Up
-PageDown - Loop Down - Right Stick Down
-f1 - pda - Back
+A - Left - Right Stick Left - X Rot -
+S - back - LeftStick Down - Y Axis up
+d - right - Right Stick Right - x Rot +
+Space - jump - A - 1
+c - Crouch - Right Stick In - 10
+Mouse 1 - primary fire - Right Trigger - z axis -
+Shift - Run - Left Stick in - 9
+Capslock - Walk - LB - 5
+e - Open/interact - B - 2
+R - Secondary Fire - Left Trigger - z axis +
+Pageup - Look Up - Right Stick Up - Y Rot -
+PageDown - Loop Down - Right Stick Down - y Rot +
+f1 - pda - Back - 3
 f2 - night vision - dpad down
 f3- fleats - dpad left
 f4 - gasmask - dpad right
