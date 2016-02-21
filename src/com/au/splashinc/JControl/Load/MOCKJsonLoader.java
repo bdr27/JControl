@@ -5,6 +5,8 @@
  */
 package com.au.splashinc.JControl.Load;
 
+import com.au.splashinc.JControl.Util.MyVariables;
+import com.au.splashinc.JControl.Util.MyVariables.ButtonAction;
 import java.awt.event.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javax.swing.KeyStroke;
@@ -43,10 +45,16 @@ f2 - night vision - dpad down
 f3- fleats - dpad left
 f4 - gasmask - dpad right
 f5 - headlamp - dpad up*/
-        JSONObject jump = new JSONObject();
-        jump.put("SimpleButton", KeyEvent.VK_K);        
-        json.put("Button1", jump);
-        json.put("name", "MOCK JSON");
+        json.put("Button1", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
+        json.put("Button2", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
+        json.put("Button3", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
+        json.put("Button5", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
+        json.put("Button9", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
+        json.put("Button10", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
+        //GetSimpleButton("SIMPLE_BUTTON", KeyEvent.VK_SPACE);
+        //jump.put("SIMPLE_BUTTON", KeyEvent.VK_SPACE);        
+        //json.put("Button1", jump);
+        //json.put("name", "MOCK JSON");
         System.out.println(json.toJSONString());
         
         //KeyStroke ks = KeyStroke.getKeyStroke('k', 0);
@@ -54,9 +62,17 @@ f5 - headlamp - dpad up*/
         //json.put("Button 1", "k");
     }
     
-    private JSONObject GetSimpleButton(String buttonName, KeyEvent key){
+    private JSONObject GetButtonJson(String buttonName, String buttonAction, int keyCode)
+    {
+        JSONObject jsonButton = new JSONObject();
+        JSONObject jsonButtonAction = GetSimpleButton(buttonAction, keyCode);
+        jsonButton.put(buttonName, jsonButtonAction);
+        return jsonButton;
+    }
+    
+    private JSONObject GetSimpleButton(String buttonName, int keyCode){
         JSONObject js = new JSONObject();
-        js.put(buttonName, key);
+        js.put(buttonName, keyCode);
         return js;
     }
     

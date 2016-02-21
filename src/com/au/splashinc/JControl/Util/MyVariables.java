@@ -12,6 +12,27 @@ package com.au.splashinc.JControl.Util;
 public class MyVariables {
     public static boolean MY_DEBUG = true;
     
+    public enum ButtonAction{
+
+        /**
+         *simple joy to key command
+         */
+        SIMPLE_BUTTON ("SimpleButton");
+        private final String value;
+        private ButtonAction(String value){
+            this.value = value;
+        }
+        
+        /*public boolean equals(String otherName){
+            return (otherName == null) ? false : value.equals(otherName);
+        }*/
+        
+        @Override
+        public String toString(){
+            return this.value;
+        }
+    }
+    
     public static boolean getDebug()
     {
         return MY_DEBUG;
