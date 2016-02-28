@@ -12,14 +12,15 @@ package com.au.splashinc.JControl.Util;
 public class MyVariables {
     public static boolean MY_DEBUG = true;
     
-    public enum ButtonAction{
+    public enum ControllerAction{
 
         /**
          *simple joy to key command
          */
-        SIMPLE_BUTTON ("SimpleButton");
+        SIMPLE_BUTTON ("SimpleButton"),
+        SIMPLE_MOUSE("SimpleMouse");
         private final String value;
-        private ButtonAction(String value){
+        private ControllerAction(String value){
             this.value = value;
         }
         

@@ -6,7 +6,7 @@
 package com.au.splashinc.JControl.Load;
 
 import com.au.splashinc.JControl.Util.MyVariables;
-import com.au.splashinc.JControl.Util.MyVariables.ButtonAction;
+import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
 import java.awt.event.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javax.swing.KeyStroke;
@@ -45,12 +45,12 @@ f2 - night vision - dpad down
 f3- fleats - dpad left
 f4 - gasmask - dpad right
 f5 - headlamp - dpad up*/
-        json.put("Button1", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
-        json.put("Button2", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
-        json.put("Button3", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
-        json.put("Button5", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
-        json.put("Button9", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
-        json.put("Button10", GetSimpleButton(ButtonAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
+        json.put("Button1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
+        json.put("Button2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
+        json.put("Button3", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
+        json.put("Button5", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
+        json.put("Button9", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
+        json.put("Button10", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
         //GetSimpleButton("SIMPLE_BUTTON", KeyEvent.VK_SPACE);
         //jump.put("SIMPLE_BUTTON", KeyEvent.VK_SPACE);        
         //json.put("Button1", jump);
