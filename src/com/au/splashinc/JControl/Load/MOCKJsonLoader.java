@@ -5,13 +5,10 @@
  */
 package com.au.splashinc.JControl.Load;
 
-import com.au.splashinc.JControl.Util.MyVariables;
 import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
+import com.sun.glass.events.MouseEvent;
 import java.awt.event.KeyEvent;
-import javafx.scene.input.KeyCode;
-import javax.swing.KeyStroke;
 import org.json.simple.JSONObject;
-
 /**
  *
  * @author bob_l
@@ -51,6 +48,20 @@ f5 - headlamp - dpad up*/
         json.put("Button5", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
         json.put("Button9", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
         json.put("Button10", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
+        json.put("X Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_A));
+        json.put("X Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_D));
+        json.put("X Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_W));
+        json.put("X Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_S));
+        json.put("Hat Switch 0", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F5));
+        json.put("Hat Switch 2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F4));
+        json.put("Hat Switch 4", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F2));
+        json.put("Hat Switch 6", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F3));
+        json.put("Z Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_R));
+        json.put("Z Axis +", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), MouseEvent.BUTTON_LEFT));
+        json.put("X Rotation", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), MouseEvent.MOVE));
+        json.put("Y Rotation -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_UP));
+        json.put("Y Rotation +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_DOWN));
+
         //GetSimpleButton("SIMPLE_BUTTON", KeyEvent.VK_SPACE);
         //jump.put("SIMPLE_BUTTON", KeyEvent.VK_SPACE);        
         //json.put("Button1", jump);
@@ -60,20 +71,5 @@ f5 - headlamp - dpad up*/
         //KeyStroke ks = KeyStroke.getKeyStroke('k', 0);
         //System.out.println(ks.getKeyCode());
         //json.put("Button 1", "k");
-    }
-    
-    private JSONObject GetButtonJson(String buttonName, String buttonAction, int keyCode)
-    {
-        JSONObject jsonButton = new JSONObject();
-        JSONObject jsonButtonAction = GetSimpleButton(buttonAction, keyCode);
-        jsonButton.put(buttonName, jsonButtonAction);
-        return jsonButton;
-    }
-    
-    private JSONObject GetSimpleButton(String buttonName, int keyCode){
-        JSONObject js = new JSONObject();
-        js.put(buttonName, keyCode);
-        return js;
-    }
-    
+    }  
 }

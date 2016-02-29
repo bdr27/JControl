@@ -5,6 +5,8 @@
  */
 package com.au.splashinc.JControl.Load;
 
+import org.json.simple.JSONObject;
+
 /**
  *
  * @author bob_l
@@ -18,4 +20,31 @@ public abstract class AControllerLoader {
     }
     
     public abstract void LoadConfig();
+    
+    protected JSONObject GetButtonJson(String buttonName, String buttonAction, int keyCode)
+    {
+        JSONObject jsonButton = new JSONObject();
+        JSONObject jsonButtonAction = GetSimpleButton(buttonAction, keyCode);
+        jsonButton.put(buttonName, jsonButtonAction);
+        return jsonButton;
+    }
+    
+    protected JSONObject GetSimpleAxis(String axisName, int keyCode, Boolean negative){
+        //Checks if it needs to be a positive or negative direction
+        int direction = 1;
+        if(negative){
+            direction = -1;
+        }
+        JSONObject js = new JSONObject();
+        JSONObject axisDirection = new JSONObject();
+        axisDirection.put(direction, keyCode);
+        js.put(axisName, axisDirection);
+        return js;
+    }
+    
+    protected JSONObject GetSimpleButton(String buttonName, int keyCode){
+        JSONObject js = new JSONObject();
+        js.put(buttonName, keyCode);
+        return js;
+    }
 }

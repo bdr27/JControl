@@ -43,6 +43,9 @@ public class MyController {
         if(controller.poll()){
             Component[] components = controller.getComponents();
             for(Component comp : components){
+                if(MY_DEBUG){
+                    System.out.println(comp.toString());
+                }
                 Identifier id = comp.getIdentifier();
                 if(id == Component.Identifier.Axis.POV){
                     hatSwitchCount++;
