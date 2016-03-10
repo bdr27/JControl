@@ -5,6 +5,8 @@
  */
 package com.au.splashinc.JControl.Load;
 
+import java.util.HashMap;
+import java.util.Map;
 import org.json.simple.JSONObject;
 
 /**

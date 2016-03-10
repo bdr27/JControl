@@ -3,24 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.au.splashinc.JControl.ControllerAction;
+package com.au.splashinc.JControl.JController;
 
 import java.util.ArrayList;
 import java.util.Map;
-import net.java.games.input.Controller;
 
 /**
  *
  * @author bob_l
  */
-public abstract class AButtonAction {
+public abstract class AControllerAction {
     protected final MyController controller;
     protected Map<String, Float> axis;
     protected ArrayList<String> buttonsDown;
     protected ArrayList<String> buttonsUp;
     protected ArrayList<Float> hatSwitches;
     
-    public AButtonAction(MyController controller)
+    public AControllerAction(MyController controller)
     {
         this.controller = controller;
     }

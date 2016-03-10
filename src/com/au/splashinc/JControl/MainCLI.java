@@ -5,9 +5,9 @@
  */
 package com.au.splashinc.JControl;
 
-import com.au.splashinc.JControl.ControllerAction.AButtonAction;
-import com.au.splashinc.JControl.ControllerAction.MockButtonAction;
-import com.au.splashinc.JControl.ControllerAction.MyController;
+import com.au.splashinc.JControl.JController.AControllerAction;
+import com.au.splashinc.JControl.JController.MockControllerAction;
+import com.au.splashinc.JControl.JController.MyController;
 import com.au.splashinc.JControl.Load.AControllerLoader;
 import com.au.splashinc.JControl.Load.MOCKJsonLoader;
 import com.au.splashinc.JControl.Util.MyControllers;
@@ -47,14 +47,14 @@ public class MainCLI {
         if (controllers.size() > 0) {
             try{
             MyController controller = new MyController(controllers.get(0));
-            AButtonAction buttonAction = new MockButtonAction(controller);
+            AControllerAction buttonAction = new MockControllerAction(controller);
             int countButton = controller.getButtonCount();
             int axisCount = controller.getAxisCount();
             int hatSwitch = controller.getHatSwitchCount();
-            /*while (true) {
+            while (true) {
                 buttonAction.Execute();            
                 Thread.sleep(20);
-            }*/
+            }
             }catch(AWTException ex){
                 System.out.println(ex.toString());
             }

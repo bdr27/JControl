@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.au.splashinc.JControl.ControllerAction;
+package com.au.splashinc.JControl.JController;
 
 import java.awt.AWTException;
 import java.awt.MouseInfo;
@@ -18,18 +18,18 @@ import javafx.scene.input.KeyCode;
  *
  * @author bob_l
  */
-public class MockButtonAction extends AButtonAction {
+public class MockControllerAction extends AControllerAction {
 
     Robot rob;
 
-    public MockButtonAction(MyController controller) throws AWTException {
+    public MockControllerAction(MyController controller) throws AWTException {
         super(controller);
         rob = new Robot();
     }
 
     @Override
     protected void ExecuteAxis() {
-        String xKey = "X Axis";
+        /*String xKey = "X Axis";
         String yKey = "Y Axis";
         float x = 0;
         float y = 0;
@@ -42,28 +42,28 @@ public class MockButtonAction extends AButtonAction {
         Point location = MouseInfo.getPointerInfo().getLocation();
         location.x += (int) (x * 100);
         location.y += (int) (y * 100);
-        rob.mouseMove(location.x, location.y);
+        rob.mouseMove(location.x, location.y);*/
     }
 
     @Override
     protected void ExecuteButtonsDown() {
-        if (buttonsDown.contains(("Button 0"))) {
+        /*if (buttonsDown.contains(("Button 0"))) {
             rob.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         }else if(buttonsDown.contains("Button 1"))
         {
             rob.mousePress(InputEvent.BUTTON3_DOWN_MASK);
-        }
+        }*/
         
     }
 
     @Override
     protected void ExecuteButtonsUp() {
-        if (buttonsDown.contains(("Button 0"))) {
+        /*if (buttonsDown.contains(("Button 0"))) {
             rob.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         }else if(buttonsDown.contains("Button 1"))
         {
             rob.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
-        }
+        }*/
     }
 
     @Override

@@ -52,16 +52,17 @@ f5 - headlamp - dpad up*/
         json.put("X Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_D));
         json.put("X Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_W));
         json.put("X Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_S));
-        json.put("Hat Switch 0", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F5));
-        json.put("Hat Switch 2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F4));
-        json.put("Hat Switch 4", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F2));
-        json.put("Hat Switch 6", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F3));
+        json.put("Hat Switch .25", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F5));
+        json.put("Hat Switch .5", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F4));
+        json.put("Hat Switch .75", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F2));
+        json.put("Hat Switch 1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F3));
         json.put("Z Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_R));
         json.put("Z Axis +", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), MouseEvent.BUTTON_LEFT));
         json.put("X Rotation", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), MouseEvent.MOVE));
         json.put("Y Rotation -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_UP));
         json.put("Y Rotation +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_DOWN));
 
+        controllerDetail = json.toJSONString();
         //GetSimpleButton("SIMPLE_BUTTON", KeyEvent.VK_SPACE);
         //jump.put("SIMPLE_BUTTON", KeyEvent.VK_SPACE);        
         //json.put("Button1", jump);
