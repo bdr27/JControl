@@ -15,6 +15,8 @@ import org.json.simple.JSONObject;
  */
 public class MOCKJsonLoader extends AControllerLoader{
     private JSONObject json;
+    
+    
     public MOCKJsonLoader(String location) {
         super(location);
         json = new JSONObject();
