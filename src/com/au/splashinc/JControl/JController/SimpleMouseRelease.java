@@ -9,17 +9,17 @@ package com.au.splashinc.JControl.JController;
  *
  * @author bob_l
  */
-public class SimpleMouseMove extends AMouseMoveExecute{
-    private int multiplier;
+public class SimpleMouseRelease extends AButtonDownUpExecute{
+    private int keycode;
     
-    public SimpleMouseMove(String name){
+    public SimpleMouseRelease(String name, int keycode){
         super(name);
-        multiplier = 200;
+        this.keycode = keycode;
     }
     
     @Override
-    protected void actionExecute(double x, double y) {
-        rob.mouseMove((int)(x * multiplier) , (int)(y * multiplier));
+    protected void actionExecute() {
+        rob.mouseRelease(keycode);
     }
     
 }

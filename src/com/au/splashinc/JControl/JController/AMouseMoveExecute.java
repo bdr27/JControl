@@ -20,9 +20,9 @@ public abstract class AMouseMoveExecute {
         this.name = name;
     }
     
-    protected abstract void actionExecute(int x, int y);
+    protected abstract void actionExecute(double x, double y);
     
-    public void Execute(int x, int y) throws AWTException{
+    public void Execute(double x, double y) throws AWTException{
         if(rob == null){
             rob = new Robot();
         }

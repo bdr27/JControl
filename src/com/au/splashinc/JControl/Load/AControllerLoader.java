@@ -5,7 +5,8 @@
  */
 package com.au.splashinc.JControl.Load;
 
-import com.au.splashinc.JControl.JController.AControllerAction;
+import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
+import com.au.splashinc.JControl.JController.AMouseMoveExecute;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.simple.JSONObject;
@@ -17,15 +18,19 @@ import org.json.simple.JSONObject;
 public abstract class AControllerLoader {
     protected String location;
     protected String controllerDetail;
-    protected Map<String, Integer> KeyBoardMap;
-    protected Map<String, Integer> MouseButtonMap;
-    protected Map<String, String> MouseMoveMap;
+    protected Map<String, AButtonDownUpExecute> keyBoardDownMap;
+    protected Map<String, AButtonDownUpExecute> keyBoardUpMap;
+    protected Map<String, AMouseMoveExecute> mouseMoveMap;
+    protected Map<String, AButtonDownUpExecute> mouseButtonDownMap;
+    protected Map<String, AButtonDownUpExecute> mouseButtonUpMap;
     
     public AControllerLoader(String location){
         this.location = location;
-        KeyBoardMap = new HashMap<>();
-        MouseButtonMap = new HashMap<>();
-        MouseMoveMap = new HashMap<>();
+        keyBoardDownMap = new HashMap<>();
+        keyBoardUpMap = new HashMap<>();
+        mouseMoveMap = new HashMap<>();
+        mouseButtonDownMap = new HashMap<>();
+        mouseButtonUpMap = new HashMap<>();
     }
     
     public abstract void LoadConfig();
