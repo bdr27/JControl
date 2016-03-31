@@ -70,6 +70,7 @@ f5 - headlamp - dpad up*/
         //json.put("Button1", jump);
         //json.put("name", "MOCK JSON");
         System.out.println(json.toJSONString());
+        JsonLoaderHelper jsh = new JsonLoaderHelper(json);
         
         //KeyStroke ks = KeyStroke.getKeyStroke('k', 0);
         //System.out.println(ks.getKeyCode());
