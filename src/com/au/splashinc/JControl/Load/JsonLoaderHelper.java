@@ -7,6 +7,13 @@ package com.au.splashinc.JControl.Load;
 
 import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
 import com.au.splashinc.JControl.JController.AMouseMoveExecute;
+import com.au.splashinc.JControl.JController.SimpleKeyPress;
+import com.au.splashinc.JControl.JController.SimpleKeyRelease;
+import com.au.splashinc.JControl.JController.SimpleMouseMove;
+import com.au.splashinc.JControl.JController.SimpleMousePress;
+import com.au.splashinc.JControl.JController.SimpleMouseRelease;
+import com.au.splashinc.JControl.Util.MyVariables;
+import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,9 +49,26 @@ public class JsonLoaderHelper {
         Object[] objKey = keys.toArray();
         for(Object key : objKey){
             System.out.println("Key: " + key.toString());
-            if(jo.containsKey(key)){
-                JSONObject value = (JSONObject) jo.get(key);
-                System.out.println("Value: " + value.toString());
+            JSONObject value = (JSONObject) jo.get(key);
+            if(value.containsKey(ControllerAction.SIMPLE_BUTTON.toString())){
+                int button = (int)value.get(ControllerAction.SIMPLE_BUTTON.toString());
+                AButtonDownUpExecute down = new SimpleKeyPress(button);
+                keyDownMap.put(key.toString(), down);
+                AButtonDownUpExecute up = new SimpleKeyRelease(button);
+                keyUpMap.put(key.toString(), up);                
+            }
+            else if(value.containsKey(ControllerAction.SIMPLE_MOUSE.toString())){
+                int mouse = (int) value.get(ControllerAction.SIMPLE_MOUSE.toString());
+                if(mouse == 224){
+                    AMouseMoveExecute mme = new SimpleMouseMove();
+                    mouseMoveMap.put(key.toString(), mme);
+                }
+                else{
+                    AButtonDownUpExecute down = new SimpleMousePress(mouse);
+                    mouseButtonDownMap.put(key.toString(), down);
+                    AButtonDownUpExecute up = new SimpleMouseRelease(mouse);
+                    mouseButtonUpMap.put(key.toString(), up);
+                }
             }
         }
     }

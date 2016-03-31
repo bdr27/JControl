@@ -13,10 +13,8 @@ import java.awt.Robot;
  * @author bob_l
  */
 public abstract class AButtonDownUpExecute {
-    private String name;
     protected static Robot rob;
-    public AButtonDownUpExecute(String name){
-        this.name = name;
+    public AButtonDownUpExecute(){
     }
     
     protected abstract void actionExecute();
@@ -26,9 +24,5 @@ public abstract class AButtonDownUpExecute {
             rob = new Robot();
         }
         actionExecute();
-    }
-       
-    public String getName(){
-        return name;
     }
 }

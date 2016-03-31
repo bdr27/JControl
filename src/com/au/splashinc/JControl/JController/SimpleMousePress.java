@@ -12,8 +12,7 @@ package com.au.splashinc.JControl.JController;
 public class SimpleMousePress extends AButtonDownUpExecute{
     private int keycode;
     
-    public SimpleMousePress(String name, int keycode){
-        super(name);
+    public SimpleMousePress(int keycode){
         this.keycode = keycode;
     }
     @Override

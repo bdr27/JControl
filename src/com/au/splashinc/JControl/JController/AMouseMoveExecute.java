@@ -13,11 +13,9 @@ import java.awt.Robot;
  * @author bob_l
  */
 public abstract class AMouseMoveExecute {
-    private String name;
     protected Robot rob;
     
-    public AMouseMoveExecute(String name){
-        this.name = name;
+    public AMouseMoveExecute(){
     }
     
     protected abstract void actionExecute(double x, double y);

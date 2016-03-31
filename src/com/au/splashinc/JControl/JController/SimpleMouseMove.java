@@ -12,8 +12,7 @@ package com.au.splashinc.JControl.JController;
 public class SimpleMouseMove extends AMouseMoveExecute{
     private int multiplier;
     
-    public SimpleMouseMove(String name){
-        super(name);
+    public SimpleMouseMove(){
         multiplier = 200;
     }
     

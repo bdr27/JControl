@@ -12,8 +12,7 @@ package com.au.splashinc.JControl.JController;
 public class SimpleKeyRelease extends AButtonDownUpExecute{
     private int keyCode;
     
-    public SimpleKeyRelease(String name, int keyCode){
-        super(name);
+    public SimpleKeyRelease(int keyCode){
         this.keyCode = keyCode;
     }
     @Override
