@@ -14,16 +14,18 @@ import java.awt.Robot;
  */
 public abstract class AMouseMoveExecute {
     protected Robot rob;
+    protected String axis;
     
-    public AMouseMoveExecute(){
+    public AMouseMoveExecute(String axis){
+        this.axis = axis;
     }
     
-    protected abstract void actionExecute(double x, double y);
+    protected abstract void actionExecute(double amount);
     
-    public void Execute(double x, double y) throws AWTException{
+    public void Execute(double amount) throws AWTException{
         if(rob == null){
             rob = new Robot();
         }
-        actionExecute(x, y);
+        actionExecute(amount);
     }
 }

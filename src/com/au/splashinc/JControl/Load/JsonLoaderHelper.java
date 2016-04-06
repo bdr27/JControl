@@ -43,9 +43,29 @@ public class JsonLoaderHelper {
         populateMaps();
     }
     
+    public Map<String, AButtonDownUpExecute> getKeyDownMap(){
+        return keyDownMap;
+    }
+    
+    public Map<String, AButtonDownUpExecute> getKeyUpMap(){
+        return keyUpMap;
+    }
+    
+    public Map<String, AMouseMoveExecute> getMouseMoveMap(){
+        return mouseMoveMap;
+    }
+    
+    public Map<String, AButtonDownUpExecute> getMouseButtonDownMap(){
+        return mouseButtonDownMap;
+    }
+    
+    public Map<String, AButtonDownUpExecute> getMouseButtonUpMap(){
+        return mouseButtonUpMap;
+    }
+    
     private void populateMaps(){
         Set keys = jo.keySet();
-        Collection co = jo.values();
+        //Collection co = jo.values();
         Object[] objKey = keys.toArray();
         for(Object key : objKey){
             System.out.println("Key: " + key.toString());
@@ -60,8 +80,9 @@ public class JsonLoaderHelper {
             else if(value.containsKey(ControllerAction.SIMPLE_MOUSE.toString())){
                 int mouse = (int) value.get(ControllerAction.SIMPLE_MOUSE.toString());
                 if(mouse == 224){
-                    AMouseMoveExecute mme = new SimpleMouseMove();
-                    mouseMoveMap.put(key.toString(), mme);
+                    //need to fix this
+                    //AMouseMoveExecute mme = new SimpleMouseMove();
+                    //mouseMoveMap.put(key.toString(), mme);
                 }
                 else{
                     AButtonDownUpExecute down = new SimpleMousePress(mouse);
