@@ -60,20 +60,18 @@ f5 - headlamp - dpad up*/
         json.put("Hat Switch 1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F3));
         json.put("Z Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_R));
         json.put("Z Axis +", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), MouseEvent.BUTTON_LEFT));
-        json.put("X Rotation", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), MouseEvent.MOVE));
+        json.put("X Rotation", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), "LeftRight"));
         json.put("Y Rotation -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_UP));
         json.put("Y Rotation +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_DOWN));
 
         controllerDetail = json.toJSONString();
-        //GetSimpleButton("SIMPLE_BUTTON", KeyEvent.VK_SPACE);
-        //jump.put("SIMPLE_BUTTON", KeyEvent.VK_SPACE);        
-        //json.put("Button1", jump);
-        //json.put("name", "MOCK JSON");
         System.out.println(json.toJSONString());
         JsonLoaderHelper jsh = new JsonLoaderHelper(json);
         
-        //KeyStroke ks = KeyStroke.getKeyStroke('k', 0);
-        //System.out.println(ks.getKeyCode());
-        //json.put("Button 1", "k");
+        keyDownMap = jsh.getKeyDownMap();
+        keyUpMap = jsh.getKeyUpMap();
+        mouseMoveMap = jsh.getMouseMoveMap();
+        mouseButtonDownMap = jsh.getMouseButtonDownMap();
+        mouseButtonUpMap = jsh.getMouseButtonUpMap();
     }  
 }
