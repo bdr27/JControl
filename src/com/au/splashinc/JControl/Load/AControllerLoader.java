@@ -76,6 +76,12 @@ public abstract class AControllerLoader {
         return js;
     }
     
+    protected JSONObject GetSimpleButton(String buttonName, String action){
+        JSONObject js = new JSONObject();
+        js.put(buttonName, action);
+        return js;
+    }
+    
     protected JSONObject GetSimpleButton(String buttonName, int keyCode){
         JSONObject js = new JSONObject();
         js.put(buttonName, keyCode);

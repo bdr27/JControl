@@ -78,17 +78,34 @@ public class JsonLoaderHelper {
                 keyUpMap.put(key.toString(), up);                
             }
             else if(value.containsKey(ControllerAction.SIMPLE_MOUSE.toString())){
-                int mouse = (int) value.get(ControllerAction.SIMPLE_MOUSE.toString());
-                if(mouse == 224){
-                    //need to fix this
-                    //AMouseMoveExecute mme = new SimpleMouseMove();
-                    //mouseMoveMap.put(key.toString(), mme);
-                }
-                else{
-                    AButtonDownUpExecute down = new SimpleMousePress(mouse);
-                    mouseButtonDownMap.put(key.toString(), down);
-                    AButtonDownUpExecute up = new SimpleMouseRelease(mouse);
-                    mouseButtonUpMap.put(key.toString(), up);
+                Object obj = value.get(ControllerAction.SIMPLE_MOUSE.toString());
+                try{
+                    int mouse = Integer.parseInt(obj.toString());
+                    if(mouse != 224){
+                        AButtonDownUpExecute down = new SimpleMousePress(mouse);
+                        mouseButtonDownMap.put(key.toString(), down);
+                        AButtonDownUpExecute up = new SimpleMouseRelease(mouse);
+                        mouseButtonUpMap.put(key.toString(), up);
+                    }
+                }catch(NumberFormatException ex){
+                    String mouse = obj.toString();
+                    String moveDirection = "";
+                    switch(mouse){
+                        case "LeftRight":
+                            moveDirection = "x";
+                            break;
+                        case "UpDown":
+                            moveDirection = "y";
+                            break;
+                        default:
+                            moveDirection = "unknown";
+                            break;
+                    }
+                    if(moveDirection.equals("unknown")){
+                    } else {
+                        AMouseMoveExecute mme = new SimpleMouseMove(moveDirection);
+                        mouseMoveMap.put(key.toString(), mme);
+                    }
                 }
             }
         }
