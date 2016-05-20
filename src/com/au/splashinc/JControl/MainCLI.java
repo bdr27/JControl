@@ -36,7 +36,7 @@ public class MainCLI {
         myControllers = new MyControllers(true);
         ArrayList<Controller> controllers2 = myControllers.GetControllers();
         
-
+        System.out.println("Let's do this");
         System.out.println("Length without all USB: " + controllers.size());
         System.out.println("Length with all USB: " + controllers2.size());
         AControllerLoader mjs = new MOCKJsonLoader("This is a test");
