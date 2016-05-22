@@ -5,6 +5,7 @@
  */
 package com.au.splashinc.JControl.JController;
 
+import com.au.splashinc.JControl.Load.AControllerLoader;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -18,12 +19,17 @@ public abstract class AControllerAction {
     protected ArrayList<String> buttonsDown;
     protected ArrayList<String> buttonsUp;
     protected ArrayList<Float> hatSwitches;
+    protected AControllerLoader loader;
     
-    public AControllerAction(MyController controller)
+    public AControllerAction(MyController controller, AControllerLoader loader)
     {
         this.controller = controller;
+        this.loader = loader;
     }
     
+    //Need another common method that will get what to do with each button
+    //Exis Axis will get a list of buttons that will then go through the loader values
+    //and see what we need to do whether it's a button down on whatnot
     private void ExecuteButtonAction(){
         ExecuteAxis();
         ExecuteButtonsDown();

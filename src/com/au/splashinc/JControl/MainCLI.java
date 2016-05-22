@@ -47,10 +47,7 @@ public class MainCLI {
         if (controllers.size() > 0) {
             try{
             MyController controller = new MyController(controllers.get(0));
-            AControllerAction buttonAction = new MockControllerAction(controller);
-            int countButton = controller.getButtonCount();
-            int axisCount = controller.getAxisCount();
-            int hatSwitch = controller.getHatSwitchCount();
+            AControllerAction buttonAction = new MockControllerAction(controller, mjs);
             while (true) {
                 buttonAction.Execute();            
                 Thread.sleep(20);
