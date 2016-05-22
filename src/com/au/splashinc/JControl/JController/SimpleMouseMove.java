@@ -5,6 +5,10 @@
  */
 package com.au.splashinc.JControl.JController;
 
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
+
 /**
  *
  * @author bob_l
@@ -19,10 +23,12 @@ public class SimpleMouseMove extends AMouseMoveExecute{
     
     @Override
     protected void actionExecute(double amount) {
+        PointerInfo currentMouseLocation = MouseInfo.getPointerInfo();
+        Point location = currentMouseLocation.getLocation();
         if(axis.equals("x")){
-            rob.mouseMove((int)(amount * multiplier), 0);
+            rob.mouseMove(location.x + (int)(amount * multiplier), location.y);
         }else if(axis.equals("y")){
-            rob.mouseMove(0, ((int) (amount * multiplier)));
+            rob.mouseMove(location.x, location.y + ((int) (amount * multiplier)));
         }
     }
     

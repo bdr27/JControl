@@ -11,6 +11,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,26 @@ public class MockControllerAction extends AControllerAction {
     }
 
     @Override
-    protected void ExecuteAxis() {        
+    protected void ExecuteAxis() {    
+        Iterator it = controllerAxis.entrySet().iterator();
+        Map<String, AMouseMoveExecute> mouseMoveMap = loader.getMouseMoveMap();
+        while(it.hasNext()){
+            Map.Entry pair = (Map.Entry)it.next();
+            String key = (String)pair.getKey();
+            Float value = (Float)pair.getValue();
+            if(mouseMoveMap.containsKey(key)){
+                AMouseMoveExecute mouseMove = (AMouseMoveExecute)mouseMoveMap.get(key);
+                try {
+                    mouseMove.Execute((double)value);
+                } catch (AWTException ex) {
+                    Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            it.remove();
+        }
+        /*for(int i = 0; i < controllerAxis.size(); i++){
+            
+        }*/
     }
 
     @Override

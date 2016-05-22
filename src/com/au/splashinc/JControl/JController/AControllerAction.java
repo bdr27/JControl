@@ -15,17 +15,24 @@ import java.util.Map;
  */
 public abstract class AControllerAction {
     protected final MyController controller;
-    protected Map<String, Float> axis;
-    protected ArrayList<String> buttonsDown;
-    protected ArrayList<String> buttonsUp;
-    protected ArrayList<Float> hatSwitches;
+    protected Map<String, Float> controllerAxis;
+    protected ArrayList<String> controllerButtonsDown;
+    protected ArrayList<String> controllerButtonsUp;
+    protected ArrayList<Float> controllerHatSwitches;
+    protected ArrayList<String> previousButtonsDown;
+    protected ArrayList<String> currentButtonsDown;
     protected AControllerLoader loader;
     
     public AControllerAction(MyController controller, AControllerLoader loader)
     {
         this.controller = controller;
         this.loader = loader;
+        previousButtonsDown = new ArrayList<>();
     }
+    
+    //Need another common method that will get what to do with each button
+    //Exis Axis will get a list of buttons that will then go through the loader values
+    //and see what we need to do whether it's a button down on whatnot;
     
     //Need another common method that will get what to do with each button
     //Exis Axis will get a list of buttons that will then go through the loader values
@@ -44,10 +51,10 @@ public abstract class AControllerAction {
     
     public void Execute(){
         if (controller.poll()){
-            axis = controller.getAxis();
-            buttonsDown = controller.getButtonsDown();
-            buttonsUp = controller.getButtonsUp();
-            hatSwitches = controller.getHatSwitches();
+            controllerAxis = controller.getAxis();
+            controllerButtonsDown = controller.getButtonsDown();
+            controllerButtonsUp = controller.getButtonsUp();
+            controllerHatSwitches = controller.getHatSwitches();
             ExecuteButtonAction();
         }        
     }
