@@ -14,6 +14,7 @@ import java.util.Map;
  * @author bob_l
  */
 public abstract class AControllerAction {
+    protected double deadzone = 0.3;
     protected final MyController controller;
     protected Map<String, Float> controllerAxis;
     protected ArrayList<String> controllerButtonsDown;

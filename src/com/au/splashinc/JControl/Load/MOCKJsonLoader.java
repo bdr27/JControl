@@ -7,6 +7,7 @@ package com.au.splashinc.JControl.Load;
 
 import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
 import com.sun.glass.events.MouseEvent;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import org.json.simple.JSONObject;
 /**
@@ -52,14 +53,14 @@ f5 - headlamp - dpad up*/
         json.put("Button10", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
         json.put("X Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_A));
         json.put("X Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_D));
-        json.put("X Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_W));
-        json.put("X Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_S));
+        json.put("Y Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_W));
+        json.put("Y Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_S));
         json.put("Hat Switch .25", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F5));
         json.put("Hat Switch .5", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F4));
         json.put("Hat Switch .75", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F2));
         json.put("Hat Switch 1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F3));
-        json.put("Z Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_R));
-        json.put("Z Axis +", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), MouseEvent.BUTTON_LEFT));
+        json.put("Z Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_R));
+        json.put("Z Axis -", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), InputEvent.BUTTON1_MASK));
         json.put("X Rotation", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), "LeftRight"));
         json.put("Y Rotation -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_UP));
         json.put("Y Rotation +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_DOWN));
