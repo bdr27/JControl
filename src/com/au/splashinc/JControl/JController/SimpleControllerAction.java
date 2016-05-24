@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static com.au.splashinc.JControl.Util.MyVariables.MY_DEBUG;
 
 /**
  *
@@ -34,7 +35,9 @@ public class SimpleControllerAction extends AControllerAction {
             Map.Entry pair = (Map.Entry) it.next();
             String key = (String) pair.getKey();
             Float value = (Float) pair.getValue();
-            System.out.println("Key: " + key + ", Value: " + value + ", Deadzone: " + deadzone);
+            if(MY_DEBUG){
+                System.out.println("Key: " + key + ", Value: " + value + ", Deadzone: " + deadzone);
+            }
             //Check for valid deadzone
             if (value > deadzone || value < 0 - deadzone) {
                 if(checkMouseMove(key, (double) value)){
@@ -66,7 +69,12 @@ public class SimpleControllerAction extends AControllerAction {
 
     @Override
     protected void ExecuteHatSwitches() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Needs to be for i = 0 or counter as you can have controllers with more then 1 hat switch
+        int counter = 0;
+        for(Float hatSwitch: controllerHatSwitches){
+            String key = String.format("Hat Switch %s %s", counter++, hatSwitch);
+            runKeyDown(key);
+        }
     }
     
     private boolean checkMouseMove(String key, double value) {
