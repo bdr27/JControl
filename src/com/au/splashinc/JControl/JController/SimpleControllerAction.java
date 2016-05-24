@@ -50,13 +50,16 @@ public class SimpleControllerAction extends AControllerAction {
 
     @Override
     protected void ExecuteButtonsDown() {
+        for(String button: controllerButtonsDown){
+            runKeyDown(button);               
+        }
     }
 
     @Override
     protected void ExecuteButtonsUp() {
-        for(String buttonDown: previousButtonsDown){
-            if(!currentButtonsDown.contains(buttonDown)){
-                runKeyUp(buttonDown);
+        for(String button: previousButtonsDown){
+            if(!currentButtonsDown.contains(button)){
+                runKeyUp(button);
             }
         }
     }
@@ -81,8 +84,7 @@ public class SimpleControllerAction extends AControllerAction {
     }
     
     private boolean checkKeyUpDown(String key, Map<String, AButtonDownUpExecute> buttons){
-        boolean valid = false;
-       
+        boolean valid = false;       
         if (buttons.containsKey(key)) {
             valid = true;
             AButtonDownUpExecute keyDown = (AButtonDownUpExecute) buttons.get(key);

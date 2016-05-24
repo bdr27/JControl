@@ -45,12 +45,12 @@ f2 - night vision - dpad down
 f3- fleats - dpad left
 f4 - gasmask - dpad right
 f5 - headlamp - dpad up*/
-        json.put("Button1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
-        json.put("Button2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
-        json.put("Button3", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
-        json.put("Button5", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
-        json.put("Button9", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
-        json.put("Button10", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
+        json.put("Button 0", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
+        json.put("Button 1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
+        json.put("Button 2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
+        json.put("Button 4", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
+        json.put("Button 8", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
+        json.put("Button 9", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
         json.put("X Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_A));
         json.put("X Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_D));
         json.put("Y Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_W));
