@@ -6,7 +6,7 @@
 package com.au.splashinc.JControl;
 
 import com.au.splashinc.JControl.JController.AControllerAction;
-import com.au.splashinc.JControl.JController.MockControllerAction;
+import com.au.splashinc.JControl.JController.SimpleControllerAction;
 import com.au.splashinc.JControl.JController.MyController;
 import com.au.splashinc.JControl.Load.AControllerLoader;
 import com.au.splashinc.JControl.Load.MOCKJsonLoader;
@@ -47,7 +47,7 @@ public class MainCLI {
         if (controllers.size() > 0) {
             try{
             MyController controller = new MyController(controllers.get(0));
-            AControllerAction buttonAction = new MockControllerAction(controller, mjs);
+            AControllerAction buttonAction = new SimpleControllerAction(controller, mjs);
             while (true) {
                 buttonAction.Execute();            
                 Thread.sleep(20);

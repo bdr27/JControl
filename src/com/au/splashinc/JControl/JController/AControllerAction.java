@@ -29,6 +29,7 @@ public abstract class AControllerAction {
         this.controller = controller;
         this.loader = loader;
         previousButtonsDown = new ArrayList<>();
+        currentButtonsDown = new ArrayList<>();
     }
     
     //Need another common method that will get what to do with each button
@@ -39,10 +40,17 @@ public abstract class AControllerAction {
     //Exis Axis will get a list of buttons that will then go through the loader values
     //and see what we need to do whether it's a button down on whatnot
     private void ExecuteButtonAction(){
+        try{
+            previousButtonsDown = (ArrayList<String>)currentButtonsDown.clone();
+        }catch(Exception ex){
+            System.out.println("Error converting current buttons to previous buttons");
+            System.err.println(ex.toString());
+        }
+        currentButtonsDown.clear();
         ExecuteAxis();
         ExecuteButtonsDown();
-        ExecuteButtonsUp();
         ExecuteHatSwitches();
+        ExecuteButtonsUp();
     }
     
     protected abstract void ExecuteAxis();
