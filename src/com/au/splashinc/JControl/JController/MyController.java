@@ -25,7 +25,6 @@ public class MyController {
     private int axisCount;
     private int hatSwitchCount;
     private ArrayList<String> buttonsDown;
-    private ArrayList<String> buttonsUp;
     private ArrayList<Float> hatSwitches;
     private ArrayList<String> previousButtonsDown;
 
@@ -74,7 +73,6 @@ public class MyController {
             //Clear up previous buttons
             axis = setMaps(axis);
             buttonsDown = setStringArrayList(buttonsDown);
-            buttonsUp = setStringArrayList(buttonsUp);
             hatSwitches = setFloatArrayList(hatSwitches);
 
             Component[] components = controller.getComponents();
@@ -106,7 +104,7 @@ public class MyController {
             if (MY_DEBUG) {
                 System.out.print("Buttons up: ");
             }
-            if (previousButtonsDown != null) {
+            /*if (previousButtonsDown != null) {
                 for (String button : previousButtonsDown) {
                     if (!buttonsDown.contains(button)) {
                         buttonsUp.add(button);
@@ -118,7 +116,7 @@ public class MyController {
                 if (MY_DEBUG) {
                     System.out.println("");
                 }
-            }
+            }*/
 
             previousButtonsDown = setStringArrayList(previousButtonsDown);
             previousButtonsDown = new ArrayList(buttonsDown);
@@ -138,13 +136,6 @@ public class MyController {
             buttonsDown = new ArrayList();
         }
         return buttonsDown;
-    }
-
-    public ArrayList<String> getButtonsUp() {
-        if (buttonsUp == null) {
-            buttonsUp = new ArrayList();
-        }
-        return buttonsUp;
     }
 
     public ArrayList<Float> getHatSwitches() {

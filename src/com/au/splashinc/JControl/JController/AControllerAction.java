@@ -18,7 +18,6 @@ public abstract class AControllerAction {
     protected final MyController controller;
     protected Map<String, Float> controllerAxis;
     protected ArrayList<String> controllerButtonsDown;
-    protected ArrayList<String> controllerButtonsUp;
     protected ArrayList<Float> controllerHatSwitches;
     protected ArrayList<String> previousButtonsDown;
     protected ArrayList<String> currentButtonsDown;
@@ -62,7 +61,6 @@ public abstract class AControllerAction {
         if (controller.poll()){
             controllerAxis = controller.getAxis();
             controllerButtonsDown = controller.getButtonsDown();
-            controllerButtonsUp = controller.getButtonsUp();
             controllerHatSwitches = controller.getHatSwitches();
             ExecuteButtonAction();
         }        
