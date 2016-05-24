@@ -34,43 +34,30 @@ public class MockControllerAction extends AControllerAction {
     @Override
     protected void ExecuteAxis() {
         Iterator it = controllerAxis.entrySet().iterator();
-
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             String key = (String) pair.getKey();
             Float value = (Float) pair.getValue();
             System.out.println("Key: " + key + ", Value: " + value + ", Deadzone: " + deadzone);
-            if (value > deadzone) {
-                if (checkMousePress(key + " +")) {
-                    continue;
-                } else if (checkKeyPress(key + " +")) {
-                    continue;
-                }
-            } else if (value < 0 - deadzone) {
-                if (checkMousePress(key + " -")) {
-                    continue;
-                } else if (checkKeyPress(key + " -")) {
-                    continue;
-                }
-            }
+            //Check for valid deadzone
             if (value > deadzone || value < 0 - deadzone) {
                 if(checkMouseMove(key, (double) value)){
-                    continue;
+                } else if (value > deadzone) {
+                    runKeyDown(key + " +");
+                } else if (value < 0 - deadzone) {
+                    runKeyDown(key + " -");
                 }
-                /*if (mouseMoveMap.containsKey(key)) {
-                    AMouseMoveExecute mouseMove = (AMouseMoveExecute) mouseMoveMap.get(key);
-                    try {
-                        mouseMove.Execute((double) value);
-                    } catch (AWTException ex) {
-                        Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }*/
             }
+            it.remove();
         }
-
-        /*for(int i = 0; i < controllerAxis.size(); i++){
-            
-        }*/
+    }
+    
+    private void runKeyDown(String key){
+        if(checkKeyPress(key)){
+            //currentButtonsDown.add(key);
+        }else if(checkMousePress(key)){
+            //currentButtonsDown.add(key);
+        }
     }
 
     private boolean checkKeyPress(String key) {
