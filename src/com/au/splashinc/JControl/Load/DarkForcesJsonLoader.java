@@ -14,11 +14,11 @@ import org.json.simple.JSONObject;
  *
  * @author bob_l
  */
-public class MOCKJsonLoader extends AControllerLoader{
+public class DarkForcesJsonLoader extends AControllerLoader{
     private JSONObject json;
     
     
-    public MOCKJsonLoader(String location) {
+    public DarkForcesJsonLoader(String location) {
         super(location);
         json = new JSONObject();
     }
@@ -46,11 +46,11 @@ f3- fleats - dpad left
 f4 - gasmask - dpad right
 f5 - headlamp - dpad up*/
         json.put("Button 0", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
-        json.put("Button 1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
-        json.put("Button 2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
+        json.put("Button 2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
+        json.put("Button 5", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
         json.put("Button 4", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
-        json.put("Button 8", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
-        json.put("Button 9", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
+        json.put("Button 3", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
+        json.put("Button 1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
         json.put("X Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_A));
         json.put("X Axis +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_D));
         json.put("Y Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_W));

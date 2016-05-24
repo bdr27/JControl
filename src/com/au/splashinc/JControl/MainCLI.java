@@ -9,7 +9,7 @@ import com.au.splashinc.JControl.JController.AControllerAction;
 import com.au.splashinc.JControl.JController.SimpleControllerAction;
 import com.au.splashinc.JControl.JController.MyController;
 import com.au.splashinc.JControl.Load.AControllerLoader;
-import com.au.splashinc.JControl.Load.MOCKJsonLoader;
+import com.au.splashinc.JControl.Load.DarkForcesJsonLoader;
 import com.au.splashinc.JControl.Util.MyControllers;
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -39,7 +39,7 @@ public class MainCLI {
         System.out.println("Let's do this");
         System.out.println("Length without all USB: " + controllers.size());
         System.out.println("Length with all USB: " + controllers2.size());
-        AControllerLoader mjs = new MOCKJsonLoader("This is a test");
+        AControllerLoader mjs = new DarkForcesJsonLoader("This is a test");
         mjs.LoadConfig();
 //JSONObject obj = new JSONObject();
         //obj.put("Hello", "World");
