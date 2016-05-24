@@ -34,70 +34,88 @@ public class MockControllerAction extends AControllerAction {
     @Override
     protected void ExecuteAxis() {
         Iterator it = controllerAxis.entrySet().iterator();
-        Map<String, AMouseMoveExecute> mouseMoveMap = loader.getMouseMoveMap();
-        Map<String, AButtonDownUpExecute> mouseButtonDownMap = loader.getMouseButtonDownMap();
-        Map<String, AButtonDownUpExecute> keyDownMap = loader.getKeyDownMap();
+
         while (it.hasNext()) {
-            boolean actionPerformed = false;
             Map.Entry pair = (Map.Entry) it.next();
             String key = (String) pair.getKey();
             Float value = (Float) pair.getValue();
             System.out.println("Key: " + key + ", Value: " + value + ", Deadzone: " + deadzone);
             if (value > deadzone) {
-                if (mouseButtonDownMap.containsKey(key + " +")) {
-                    AButtonDownUpExecute mouseButton = (AButtonDownUpExecute) mouseButtonDownMap.get(key + " +");
-                    try {
-                        mouseButton.execute();
-                    } catch (AWTException ex) {
-                        Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                if (checkMousePress(key + " +")) {
                     continue;
-                } else if (keyDownMap.containsKey(key + " +")) {
-                    actionPerformed = true;
-                    AButtonDownUpExecute keyDown = (AButtonDownUpExecute) keyDownMap.get(key + " +");
-                    try {
-                        keyDown.execute();
-                    } catch (AWTException ex) {
-                        Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                } else if (checkKeyPress(key + " +")) {
                     continue;
                 }
             } else if (value < 0 - deadzone) {
-                if (mouseButtonDownMap.containsKey(key + " -")) {
-                    actionPerformed = true;
-                    AButtonDownUpExecute mouseButton = (AButtonDownUpExecute) mouseButtonDownMap.get(key + " -");
-                    try {
-                        mouseButton.execute();
-                    } catch (AWTException ex) {
-                        Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                if (checkMousePress(key + " -")) {
                     continue;
-                } else if (keyDownMap.containsKey(key + " -")) {
-                    actionPerformed = true;
-                    AButtonDownUpExecute keyDown = (AButtonDownUpExecute) keyDownMap.get(key + " -");
-                    try {
-                        keyDown.execute();
-                    } catch (AWTException ex) {
-                        Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                } else if (checkKeyPress(key + " -")) {
                     continue;
                 }
             }
             if (value > deadzone || value < 0 - deadzone) {
-                if (mouseMoveMap.containsKey(key)) {
+                if(checkMouseMove(key, (double) value)){
+                    continue;
+                }
+                /*if (mouseMoveMap.containsKey(key)) {
                     AMouseMoveExecute mouseMove = (AMouseMoveExecute) mouseMoveMap.get(key);
                     try {
                         mouseMove.Execute((double) value);
                     } catch (AWTException ex) {
                         Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
+                }*/
             }
         }
 
         /*for(int i = 0; i < controllerAxis.size(); i++){
             
         }*/
+    }
+
+    private boolean checkKeyPress(String key) {
+        boolean valid = false;
+        Map<String, AButtonDownUpExecute> keyDownMap = loader.getKeyDownMap();
+        if (keyDownMap.containsKey(key)) {
+            valid = true;
+            AButtonDownUpExecute keyDown = (AButtonDownUpExecute) keyDownMap.get(key);
+            try {
+                keyDown.execute();
+            } catch (AWTException ex) {
+                Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valid;
+    }
+
+    private boolean checkMousePress(String key) {
+        boolean valid = false;
+        Map<String, AButtonDownUpExecute> mouseButtonDownMap = loader.getMouseButtonDownMap();
+
+        if (mouseButtonDownMap.containsKey(key)) {
+            AButtonDownUpExecute mouseButton = (AButtonDownUpExecute) mouseButtonDownMap.get(key);
+            valid = true;
+            try {
+                mouseButton.execute();
+            } catch (AWTException ex) {
+                Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valid;
+    }
+
+    private boolean checkMouseMove(String key, double value) {
+        boolean valid = false;
+        Map<String, AMouseMoveExecute> mouseMoveMap = loader.getMouseMoveMap();
+        if (mouseMoveMap.containsKey(key)) {
+            AMouseMoveExecute mouseMove = (AMouseMoveExecute) mouseMoveMap.get(key);
+            try {
+                mouseMove.Execute(value);
+            } catch (AWTException ex) {
+                Logger.getLogger(MockControllerAction.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valid;
     }
 
     @Override
