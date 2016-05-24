@@ -104,19 +104,6 @@ public class MyController {
             if (MY_DEBUG) {
                 System.out.print("Buttons up: ");
             }
-            /*if (previousButtonsDown != null) {
-                for (String button : previousButtonsDown) {
-                    if (!buttonsDown.contains(button)) {
-                        buttonsUp.add(button);
-                        if (MY_DEBUG) {
-                            System.out.print(button + " ");
-                        }
-                    }
-                }
-                if (MY_DEBUG) {
-                    System.out.println("");
-                }
-            }*/
 
             previousButtonsDown = setStringArrayList(previousButtonsDown);
             previousButtonsDown = new ArrayList(buttonsDown);

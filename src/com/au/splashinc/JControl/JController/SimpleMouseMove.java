@@ -18,7 +18,7 @@ public class SimpleMouseMove extends AMouseMoveExecute{
     
     public SimpleMouseMove(String axis){
         super(axis);
-        multiplier = 200;
+        multiplier = 100;
     }
     
     @Override
@@ -30,6 +30,5 @@ public class SimpleMouseMove extends AMouseMoveExecute{
         }else if(axis.equals("y")){
             rob.mouseMove(location.x, location.y + ((int) (amount * multiplier)));
         }
-    }
-    
+    }    
 }
