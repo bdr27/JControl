@@ -47,8 +47,8 @@ f4 - gasmask - dpad right
 f5 - headlamp - dpad up*/
         json.put("Button 0", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
         json.put("Button 2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
-        json.put("Button 5", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
-        json.put("Button 4", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
+        json.put("Button 8", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
+        json.put("Button 7", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
         json.put("Button 3", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SHIFT));
         json.put("Button 1", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_C));
         json.put("X Axis -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_A));
@@ -64,6 +64,7 @@ f5 - headlamp - dpad up*/
         json.put("X Rotation", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), "LeftRight"));
         json.put("Y Rotation +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_UP));
         json.put("Y Rotation -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_DOWN));
+        //json.put("Button 4,5", this)
 
         controllerDetail = json.toJSONString();
         System.out.println(json.toJSONString());
