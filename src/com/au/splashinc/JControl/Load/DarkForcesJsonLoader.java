@@ -9,21 +9,21 @@ import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
 import com.sun.glass.events.MouseEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 /**
  *
  * @author bob_l
  */
-public class DarkForcesJsonLoader extends AControllerLoader{
-    private JSONObject json;
-    
+public class DarkForcesJsonLoader extends JsonLoader{
+    private JSONObject json;   
     
     public DarkForcesJsonLoader(String location) {
         super(location);
         json = new JSONObject();
     }
 
-    @Override
+    //@Override
     public void LoadConfig() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //JSON organised in [Button/Axis/POV],{[TypeofAction],[Value]}
@@ -45,7 +45,38 @@ f2 - night vision - dpad down
 f3- fleats - dpad left
 f4 - gasmask - dpad right
 f5 - headlamp - dpad up*/
-        json.put("Button 0", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
+        JSONArray simpleKey = new JSONArray();
+        simpleKey.add(GetJSONObject("Button 0", KeyEvent.VK_SPACE));
+        simpleKey.add(GetJSONObject("Button 2", KeyEvent.VK_E));
+        simpleKey.add(GetJSONObject("Button 8", KeyEvent.VK_F1));
+        simpleKey.add(GetJSONObject("Button 7", KeyEvent.VK_CAPS_LOCK));
+        simpleKey.add(GetJSONObject("Button 3", KeyEvent.VK_SHIFT));
+        simpleKey.add(GetJSONObject("Button 1", KeyEvent.VK_C));
+        simpleKey.add(GetJSONObject("X Axis -", KeyEvent.VK_A));
+        simpleKey.add(GetJSONObject("X Axis +", KeyEvent.VK_D));
+        simpleKey.add(GetJSONObject("Y Axis -", KeyEvent.VK_W));
+        simpleKey.add(GetJSONObject("Y Axis +", KeyEvent.VK_S));
+        simpleKey.add(GetJSONObject("Hat Switch 0 0.25", KeyEvent.VK_F5));
+        simpleKey.add(GetJSONObject("Hat Switch 0 0.5", KeyEvent.VK_F4));
+        simpleKey.add(GetJSONObject("Hat Switch 0 0.75", KeyEvent.VK_F2));
+        simpleKey.add(GetJSONObject("Hat Switch 0 1.0", KeyEvent.VK_F3));
+        simpleKey.add(GetJSONObject("Z Axis +", KeyEvent.VK_R));
+        simpleKey.add(GetJSONObject("Y Rotation +", KeyEvent.VK_PAGE_UP));
+        simpleKey.add(GetJSONObject("Y Rotation -", KeyEvent.VK_PAGE_DOWN));
+        JSONArray simpleMouse = new JSONArray();
+        simpleMouse.add(GetJSONObject("X Rotation", "LeftRight"));
+        simpleMouse.add(GetJSONObject("Z Axis -", InputEvent.BUTTON1_MASK));
+//JSONObject jo = new JSONObject();
+        //jo.put("Button 0", KeyEvent.VK_SPACE);
+        //jo.put("Button 2", KeyEvent.VK_E);
+        //jo.pu
+        //simpleKey.add(jo);
+        /*JSONObject j1 = new JSONObject();
+        j1.put("Button 2", KeyEvent.VK_E);
+        simpleKey.add(j1);*/
+        json.put(ControllerAction.SIMPLE_BUTTON.toString(), simpleKey);
+        json.put(ControllerAction.SIMPLE_MOUSE.toString(), simpleMouse);
+        /*json.put("Button 0", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_SPACE));
         json.put("Button 2", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_E));
         json.put("Button 8", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_F1));
         json.put("Button 7", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_CAPS_LOCK));
@@ -63,7 +94,7 @@ f5 - headlamp - dpad up*/
         json.put("Z Axis -", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), InputEvent.BUTTON1_MASK));
         json.put("X Rotation", GetSimpleButton(ControllerAction.SIMPLE_MOUSE.toString(), "LeftRight"));
         json.put("Y Rotation +", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_UP));
-        json.put("Y Rotation -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_DOWN));
+        json.put("Y Rotation -", GetSimpleButton(ControllerAction.SIMPLE_BUTTON.toString(), KeyEvent.VK_PAGE_DOWN));*/
         //json.put("Button 4,5", this)
 
         controllerDetail = json.toJSONString();

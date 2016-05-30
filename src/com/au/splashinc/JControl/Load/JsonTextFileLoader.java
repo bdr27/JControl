@@ -9,9 +9,9 @@ package com.au.splashinc.JControl.Load;
  *
  * @author bob_l
  */
-public class TextLoader extends AControllerLoader{
+public class JsonTextFileLoader extends JsonLoader{
     
-    public TextLoader(String location){
+    public JsonTextFileLoader(String location){
         super(location);
     }
 
