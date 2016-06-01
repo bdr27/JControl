@@ -5,87 +5,117 @@
  */
 package com.au.splashinc.JControl.Load;
 
+import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
+import com.au.splashinc.JControl.JController.AMouseMoveExecute;
+import com.au.splashinc.JControl.JController.SimpleKeyPress;
+import com.au.splashinc.JControl.JController.SimpleKeyRelease;
+import com.au.splashinc.JControl.JController.SimpleMouseMove;
+import com.au.splashinc.JControl.JController.SimpleMousePress;
+import com.au.splashinc.JControl.JController.SimpleMouseRelease;
+import com.au.splashinc.JControl.Util.MyVariables;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
+import java.util.Iterator;
+import org.json.simple.JSONArray;
 
 /**
  *
  * @author bob_l
  */
 //Maybe needs to be an abstract class
-public abstract class JsonLoader extends AControllerLoader{
+public abstract class JsonLoader extends AControllerLoader {
+
     String json;
-    
+
     public JsonLoader(String location) {
         super(location);
     }
 
-    @Override
-    public void LoadConfig() {
-        JSONParser parser = new JSONParser();
-        try {
-            Object obj = parser.parse(new FileReader(location));
-            JSONObject jsonObject = (JSONObject) obj;
-            //Do stuff probably in another class
-        } catch (IOException | ParseException ex) {
-            Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
+    protected void populateMaps(JSONObject json) {
+        JSONArray mouseArray = (JSONArray) json.get(ControllerAction.SIMPLE_MOUSE.toString());
+        for (int i = 0; i < mouseArray.size(); i++) {
+            JSONObject jo = (JSONObject) mouseArray.get(i);
+            Set controllerKeys = jo.keySet();
+            Iterator a = controllerKeys.iterator();
+            while (a.hasNext()) {
+                Object key = a.next();
+                JSONObject values = (JSONObject) jo.get(key);
+                Object obj = values.get("action");
+                try {
+                    int mouse = Integer.parseInt(obj.toString());
+                    if (mouse != 224) {
+                        AButtonDownUpExecute down = new SimpleMousePress(mouse);
+                        mouseButtonDownMap.put(key.toString(), down);
+                        AButtonDownUpExecute up = new SimpleMouseRelease(mouse);
+                        mouseButtonUpMap.put(key.toString(), up);
+                    }
+                } catch (NumberFormatException ex) {
+                    String mouse = obj.toString();
+                    String moveDirection = "";
+                    switch (mouse) {
+                        case "LeftRight":
+                            moveDirection = "x";
+                            break;
+                        case "UpDown":
+                            moveDirection = "y";
+                            break;
+                        default:
+                            moveDirection = "unknown";
+                            break;
+                    }
+                    if (moveDirection.equals("unknown")) {
+                    } else {
+                        AMouseMoveExecute mme = new SimpleMouseMove(moveDirection);
+                        mouseMoveMap.put(key.toString(), mme);
+                    }
+                }
+            }
+        }
+        JSONArray buttonArray = (JSONArray) json.get(ControllerAction.SIMPLE_BUTTON.toString());
+        for (int i = 0; i < buttonArray.size(); i++) {
+            JSONObject jo = (JSONObject) buttonArray.get(i);
+            Set controllerKeys = jo.keySet();
+            Iterator a = controllerKeys.iterator();
+            while (a.hasNext()) {
+                Object key = a.next();
+                JSONObject values = (JSONObject) jo.get(key);
+                Object obj = values.get("action");
+                try {
+                    int button = Integer.parseInt(obj.toString());
+                    AButtonDownUpExecute down = new SimpleKeyPress(button);
+                    keyDownMap.put(key.toString(), down);
+                    AButtonDownUpExecute up = new SimpleKeyRelease(button);
+                    keyUpMap.put(key.toString(), up);
+                } catch (NumberFormatException ex) {
+                    System.err.println(ex.toString());
+                }
+            }
         }
     }
     
-    //Probably only be in dark forces
-    protected JSONObject GetButtonJSON(Object button, Object action){
+        //Probably only be in dark forces
+    protected JSONObject getButtonJSON(Object button, Object action) {
         /*JSONObject jo = new JSONObject();
         jo.put(button, keyMouse);
         return jo;*/
-        JSONObject jo = GetJsonObject(button, GetJsonObject("action", action));
+        JSONObject jo = getJsonObject(button, getJsonObject("action", action));
         return jo;
     }
-    
-    protected JSONObject GetJsonObject(Object key, Object value){
+
+    protected JSONObject getJsonObject(Object key, Object value) {
         JSONObject jo = new JSONObject();
         jo.put(key, value);
         return jo;
     }
-    /*protected JSONObject GetButtonJson(String buttonName, String buttonAction, int keyCode)
-    {
-        JSONObject jsonButton = new JSONObject();
-        JSONObject jsonButtonAction = GetSimpleButton(buttonAction, keyCode);
-        jsonButton.put(buttonName, jsonButtonAction);
-        return jsonButton;
-    }
-    
-    protected JSONObject GetSimpleAxis(String axisName, int keyCode, Boolean negative){
-        //Checks if it needs to be a positive or negative direction
-        int direction = 1;
-        if(negative){
-            direction = -1;
-        }
-        JSONObject js = new JSONObject();
-        JSONObject axisDirection = new JSONObject();
-        axisDirection.put(direction, keyCode);
-        js.put(axisName, axisDirection);
-        return js;
-    }
-    
-    protected JSONObject GetSimpleButton(String buttonName, String action){
-        JSONObject js = new JSONObject();
-        js.put(buttonName, action);
-        return js;
-    }
-    
-    protected JSONObject GetSimpleButton(String buttonName, int keyCode){
-        JSONObject js = new JSONObject();
-        js.put(buttonName, keyCode);
-        return js;
-    }*/
-    
 }
