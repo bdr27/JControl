@@ -7,11 +7,9 @@ package com.au.splashinc.JControl.Load;
 
 import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
 import com.au.splashinc.JControl.JController.AMouseMoveExecute;
-import com.au.splashinc.JControl.JController.SimpleKeyPress;
-import com.au.splashinc.JControl.JController.SimpleKeyRelease;
-import com.au.splashinc.JControl.JController.SimpleMouseMove;
-import com.au.splashinc.JControl.JController.SimpleMousePress;
-import com.au.splashinc.JControl.JController.SimpleMouseRelease;
+import com.au.splashinc.JControl.JController.ButtonDownUpSimpleKey;
+import com.au.splashinc.JControl.JController.MouseMoveSimple;
+import com.au.splashinc.JControl.JController.ButtonDownUpSimpleMouseButton;
 import com.au.splashinc.JControl.Util.MyVariables;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -55,10 +53,8 @@ public abstract class JsonLoader extends AControllerLoader {
                 try {
                     int mouse = Integer.parseInt(obj.toString());
                     if (mouse != 224) {
-                        AButtonDownUpExecute down = new SimpleMousePress(mouse);
-                        mouseButtonDownMap.put(key.toString(), down);
-                        AButtonDownUpExecute up = new SimpleMouseRelease(mouse);
-                        mouseButtonUpMap.put(key.toString(), up);
+                        AButtonDownUpExecute button = new ButtonDownUpSimpleMouseButton(mouse);
+                        mouseButtonMap.put(key.toString(), button);                        
                     }
                 } catch (NumberFormatException ex) {
                     String mouse = obj.toString();
@@ -76,7 +72,7 @@ public abstract class JsonLoader extends AControllerLoader {
                     }
                     if (moveDirection.equals("unknown")) {
                     } else {
-                        AMouseMoveExecute mme = new SimpleMouseMove(moveDirection);
+                        AMouseMoveExecute mme = new MouseMoveSimple(moveDirection);
                         mouseMoveMap.put(key.toString(), mme);
                     }
                 }
@@ -93,10 +89,8 @@ public abstract class JsonLoader extends AControllerLoader {
                 Object obj = values.get("action");
                 try {
                     int button = Integer.parseInt(obj.toString());
-                    AButtonDownUpExecute down = new SimpleKeyPress(button);
-                    keyDownMap.put(key.toString(), down);
-                    AButtonDownUpExecute up = new SimpleKeyRelease(button);
-                    keyUpMap.put(key.toString(), up);
+                    AButtonDownUpExecute down = new ButtonDownUpSimpleKey(button);
+                    keyMap.put(key.toString(), down);
                 } catch (NumberFormatException ex) {
                     System.err.println(ex.toString());
                 }
