@@ -129,5 +129,5 @@ public class SimpleControllerAction extends AControllerAction {
                 Logger.getLogger(SimpleControllerAction.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    } 
+    }   
 }

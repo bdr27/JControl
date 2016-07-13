@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author bob_l
  */
-public abstract class AControllerAction implements Runnable{
+public abstract class AControllerAction {
     protected double deadzone = 0.3;
     protected final MyController controller;
     protected Map<String, Float> controllerAxis;
@@ -55,14 +55,9 @@ public abstract class AControllerAction implements Runnable{
     protected abstract void ExecuteAxis();
     protected abstract void ExecuteButtonsDown();
     protected abstract void ExecuteButtonsUp();
-    protected abstract void ExecuteHatSwitches();      
-
-    @Override
-    public void run() {
-        Execute();
-    }
+    protected abstract void ExecuteHatSwitches();
     
-    private void Execute(){
+    public void Execute(){
         if (controller.poll()){
             controllerAxis = controller.getAxis();
             controllerButtonsDown = controller.getButtonsDown();

@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.input.KeyCode;
 import net.java.games.input.Controller;
 import net.java.games.input.Controller.Type;
 import net.java.games.input.ControllerEnvironment;
@@ -33,16 +32,6 @@ import org.json.simple.JSONObject;
 public class MainCLI {
 
     public static void main(String[] args) {
-        try{
-            Robot rob = new Robot();
-            Thread.sleep(2000);
-            rob.keyPress(KeyEvent.VK_A);
-            rob.keyRelease(KeyEvent.VK_A);
-        } catch (AWTException ex) {
-            System.out.println(ex.toString());
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MainCLI.class.getName()).log(Level.SEVERE, null, ex);
-        }
         MyControllers myControllers = new MyControllers();
         ArrayList<Controller> controllers = myControllers.GetControllers();
         myControllers = new MyControllers(true);
@@ -60,10 +49,8 @@ public class MainCLI {
             try{
             MyController controller = new MyController(controllers.get(0));
             AControllerAction buttonAction = new SimpleControllerAction(controller, mjs);
-            Thread buttons = new Thread(buttonAction);
-            //buttons.start();
             while (true) {
-                buttons.run();
+                buttonAction.Execute();            
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException ex) {
