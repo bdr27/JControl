@@ -9,18 +9,15 @@ package com.au.splashinc.JControl.JController;
  *
  * @author bob_l
  */
-public class ButtonDownUpSimpleKey extends AButtonDownUpExecute{
-    public int keyCode;
+public class SimpleKeyRelease extends AButtonDownUpExecute{
+    private int keyCode;
     
-    public ButtonDownUpSimpleKey(int keyCode){
+    public SimpleKeyRelease(int keyCode){
         this.keyCode = keyCode;
     }
-
     @Override
-    protected void actionKeyDown() {
-        rob.keyPress(keyCode);   }
-
-    @Override
-    protected void actionKeyUp() {
-        rob.keyRelease(keyCode);}
+    protected void actionExecute() {
+        rob.keyRelease(keyCode);
+    }
+    
 }

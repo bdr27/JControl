@@ -13,10 +13,10 @@ import java.awt.PointerInfo;
  *
  * @author bob_l
  */
-public class MouseMoveSimple extends AMouseMoveExecute{
+public class SimpleMouseMove extends AMouseMoveExecute{
     private int multiplier;
     
-    public MouseMoveSimple(String axis){
+    public SimpleMouseMove(String axis){
         super(axis);
         multiplier = 100;
     }

@@ -17,22 +17,12 @@ public abstract class AButtonDownUpExecute {
     public AButtonDownUpExecute(){
     }
     
-    protected abstract void actionKeyDown();
-    protected abstract void actionKeyUp();
+    protected abstract void actionExecute();
     
-    public void executeKeyDown() throws AWTException{
-        prepareRob();
-        actionKeyDown();
-    }
-    
-    private void prepareRob() throws AWTException{
+    public void execute() throws AWTException{
         if(rob == null){
             rob = new Robot();
         }
-    }
-    
-    public void executeKeyUp() throws AWTException{
-        prepareRob();
-        actionKeyUp();
+        actionExecute();
     }
 }

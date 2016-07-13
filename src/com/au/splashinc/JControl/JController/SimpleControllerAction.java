@@ -91,40 +91,35 @@ public class SimpleControllerAction extends AControllerAction {
         return valid;
     }
     
-    private AButtonDownUpExecute checkKeyUpDown(String key, Map<String, AButtonDownUpExecute> buttons){
-        AButtonDownUpExecute buttonDownUp = null;  
+    private boolean checkKeyUpDown(String key, Map<String, AButtonDownUpExecute> buttons){
+        boolean valid = false;       
         if (buttons.containsKey(key)) {
-            buttonDownUp = (AButtonDownUpExecute) buttons.get(key);
-        }
-        return buttonDownUp;
-    }
-    
-    private void runKeyDown(String key){
-        AButtonDownUpExecute button = checkKeyUpDown(key, loader.getKeyMap());
-        if(button == null){
-            button = checkKeyUpDown(key, loader.getMouseButtonMap());
-        }
-        if(button != null){
-            currentButtonsDown.add(key);
+            valid = true;
+            AButtonDownUpExecute keyDown = (AButtonDownUpExecute) buttons.get(key);
             try {
-                button.executeKeyDown();
+                keyDown.execute();
             } catch (AWTException ex) {
                 Logger.getLogger(SimpleControllerAction.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        return valid;
+    }
+    
+    private void runKeyDown(String key){
+        boolean validKeyDown = false;
+        if(checkKeyUpDown(key, loader.getKeyDownMap())){
+            validKeyDown = true;
+        }else if(checkKeyUpDown(key, loader.getMouseButtonDownMap())){
+            validKeyDown = true;
+        }
+        if(validKeyDown){
+            currentButtonsDown.add(key);
         }
     }
     
     private void runKeyUp(String key){
-        AButtonDownUpExecute button = checkKeyUpDown(key, loader.getKeyMap());
-        if(button == null){
-            button = checkKeyUpDown(key, loader.getMouseButtonMap());
-        }
-        if(button != null){
-            try {
-                button.executeKeyUp();
-            } catch (AWTException ex) {
-                Logger.getLogger(SimpleControllerAction.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        if(checkKeyUpDown(key, loader.getKeyUpMap())){
+        }else if(checkKeyUpDown(key, loader.getMouseButtonUp())){
         }
     }   
 }

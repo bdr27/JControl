@@ -7,9 +7,11 @@ package com.au.splashinc.JControl.Load;
 
 import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
 import com.au.splashinc.JControl.JController.AMouseMoveExecute;
-import com.au.splashinc.JControl.JController.ButtonDownUpSimpleKey;
-import com.au.splashinc.JControl.JController.MouseMoveSimple;
-import com.au.splashinc.JControl.JController.ButtonDownUpSimpleMouseButton;
+import com.au.splashinc.JControl.JController.SimpleKeyPress;
+import com.au.splashinc.JControl.JController.SimpleKeyRelease;
+import com.au.splashinc.JControl.JController.SimpleMouseMove;
+import com.au.splashinc.JControl.JController.SimpleMousePress;
+import com.au.splashinc.JControl.JController.SimpleMouseRelease;
 import com.au.splashinc.JControl.Util.MyVariables;
 import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
 import java.util.Collection;
@@ -25,28 +27,40 @@ import org.json.simple.JSONObject;
  */
 public class JsonLoaderHelper {
     private JSONObject jo;
-    private Map<String, AButtonDownUpExecute> keyMap;
+    private Map<String, AButtonDownUpExecute> keyDownMap;
+    private Map<String, AButtonDownUpExecute> keyUpMap;
     private Map<String, AMouseMoveExecute> mouseMoveMap;
-    private Map<String, AButtonDownUpExecute> mouseButtonMap;
+    private Map<String, AButtonDownUpExecute> mouseButtonDownMap;
+    private Map<String, AButtonDownUpExecute> mouseButtonUpMap;
     
     public JsonLoaderHelper(JSONObject jo){
         this.jo = jo;
-        keyMap = new HashMap<>();
+        keyDownMap = new HashMap<>();
+        keyUpMap = new HashMap<>();
         mouseMoveMap = new HashMap<>();
-        mouseButtonMap = new HashMap<>();
+        mouseButtonDownMap = new HashMap<>();
+        mouseButtonUpMap = new HashMap<>();
         populateMaps();
     }
     
-    public Map<String, AButtonDownUpExecute> getKeyMap(){
-        return keyMap;
+    public Map<String, AButtonDownUpExecute> getKeyDownMap(){
+        return keyDownMap;
+    }
+    
+    public Map<String, AButtonDownUpExecute> getKeyUpMap(){
+        return keyUpMap;
     }
     
     public Map<String, AMouseMoveExecute> getMouseMoveMap(){
         return mouseMoveMap;
     }
     
-    public Map<String, AButtonDownUpExecute> getMouseButtonMap(){
-        return mouseButtonMap;
+    public Map<String, AButtonDownUpExecute> getMouseButtonDownMap(){
+        return mouseButtonDownMap;
+    }
+    
+    public Map<String, AButtonDownUpExecute> getMouseButtonUpMap(){
+        return mouseButtonUpMap;
     }
     
     private void populateMaps(){
@@ -58,16 +72,20 @@ public class JsonLoaderHelper {
             JSONObject value = (JSONObject) jo.get(key);
             if(value.containsKey(ControllerAction.SIMPLE_BUTTON.toString())){
                 int button = (int)value.get(ControllerAction.SIMPLE_BUTTON.toString());
-                AButtonDownUpExecute down = new ButtonDownUpSimpleKey(button);
-                keyMap.put(key.toString(), down);              
+                AButtonDownUpExecute down = new SimpleKeyPress(button);
+                keyDownMap.put(key.toString(), down);
+                AButtonDownUpExecute up = new SimpleKeyRelease(button);
+                keyUpMap.put(key.toString(), up);                
             }
             else if(value.containsKey(ControllerAction.SIMPLE_MOUSE.toString())){
                 Object obj = value.get(ControllerAction.SIMPLE_MOUSE.toString());
                 try{
                     int mouse = Integer.parseInt(obj.toString());
                     if(mouse != 224){
-                        AButtonDownUpExecute down = new ButtonDownUpSimpleMouseButton(mouse);
-                        mouseButtonMap.put(key.toString(), down);
+                        AButtonDownUpExecute down = new SimpleMousePress(mouse);
+                        mouseButtonDownMap.put(key.toString(), down);
+                        AButtonDownUpExecute up = new SimpleMouseRelease(mouse);
+                        mouseButtonUpMap.put(key.toString(), up);
                     }
                 }catch(NumberFormatException ex){
                     String mouse = obj.toString();
@@ -85,7 +103,7 @@ public class JsonLoaderHelper {
                     }
                     if(moveDirection.equals("unknown")){
                     } else {
-                        AMouseMoveExecute mme = new MouseMoveSimple(moveDirection);
+                        AMouseMoveExecute mme = new SimpleMouseMove(moveDirection);
                         mouseMoveMap.put(key.toString(), mme);
                     }
                 }

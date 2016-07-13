@@ -10,7 +10,7 @@ package com.au.splashinc.JControl.Util;
  * @author bob_l
  */
 public class MyVariables {
-    public static boolean MY_DEBUG = true;
+    public static boolean MY_DEBUG = false;
     
     public enum ControllerAction{
 
