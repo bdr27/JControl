@@ -18,13 +18,11 @@ public class ButtonDownUpSimpleMouseButton extends AButtonDownUpExecute{
 
     @Override
     protected void actionKeyDown() {
-        System.out.println("mouse down: " + keycode);
         rob.mousePress(keycode);
     }
 
     @Override
     protected void actionKeyUp() {
-        System.out.println("mouse up: " + keycode);
         rob.mouseRelease(keycode);
     }
     

@@ -13,7 +13,7 @@ import java.awt.Robot;
  * @author bob_l
  */
 public abstract class AButtonDownUpExecute {
-    protected Robot rob;
+    protected static Robot rob;
     public AButtonDownUpExecute(){
     }
     

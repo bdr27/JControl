@@ -85,7 +85,6 @@ public class SimpleControllerAction extends AControllerAction {
             try {
                 mouseMove.Execute(value);
             } catch (AWTException ex) {
-                System.out.println(ex.toString());
                 Logger.getLogger(SimpleControllerAction.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -110,7 +109,6 @@ public class SimpleControllerAction extends AControllerAction {
             try {
                 button.executeKeyDown();
             } catch (AWTException ex) {
-                System.out.println(ex.toString());
                 Logger.getLogger(SimpleControllerAction.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -124,8 +122,7 @@ public class SimpleControllerAction extends AControllerAction {
         if(button != null){
             try {
                 button.executeKeyUp();
-            } catch (AWTException ex) {                
-                System.out.println(ex.toString());
+            } catch (AWTException ex) {
                 Logger.getLogger(SimpleControllerAction.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
