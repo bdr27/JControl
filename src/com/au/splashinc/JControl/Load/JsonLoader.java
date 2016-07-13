@@ -41,16 +41,9 @@ public abstract class JsonLoader extends AControllerLoader{
         }
     }
     
-    //Probably only be in dark forces
-    protected JSONObject GetButtonJSON(Object button, Object action){
-        /*JSONObject jo = new JSONObject();
-        jo.put(button, keyMouse);
-        return jo;*/
-        JSONObject jo = GetJsonObject(button, GetJsonObject("action", action));
-        return jo;
-    }
+    //public abstract JSONObject GetJSON();
     
-    protected JSONObject GetJsonObject(Object key, Object value){
+    protected JSONObject GetJSONObject(Object key, Object value){
         JSONObject jo = new JSONObject();
         jo.put(key, value);
         return jo;
