@@ -11,6 +11,7 @@ import com.au.splashinc.JControl.JController.MyController;
 import com.au.splashinc.JControl.Load.AControllerLoader;
 import com.au.splashinc.JControl.Load.DarkForcesJsonLoader;
 import com.au.splashinc.JControl.Util.MyControllers;
+import com.sun.glass.events.KeyEvent;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ import org.json.simple.JSONObject;
  */
 public class MainCLI {
 
-    public static void main(String[] args) throws AWTException, InterruptedException {
+    public static void main(String[] args) {
         MyControllers myControllers = new MyControllers();
         ArrayList<Controller> controllers = myControllers.GetControllers();
         myControllers = new MyControllers(true);
@@ -50,7 +51,11 @@ public class MainCLI {
             AControllerAction buttonAction = new SimpleControllerAction(controller, mjs);
             while (true) {
                 buttonAction.Execute();            
-                Thread.sleep(20);
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(MainCLI.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             }catch(AWTException ex){
                 System.out.println(ex.toString());

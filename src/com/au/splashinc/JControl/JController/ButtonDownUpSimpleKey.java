@@ -18,9 +18,12 @@ public class ButtonDownUpSimpleKey extends AButtonDownUpExecute{
 
     @Override
     protected void actionKeyDown() {
-        rob.keyPress(keyCode);   }
+        System.out.println("keyDown: " + keyCode);
+        rob.keyPress(keyCode);   
+    }
 
     @Override
     protected void actionKeyUp() {
+        System.out.println("keyUp: " + keyCode);
         rob.keyRelease(keyCode);}
 }
