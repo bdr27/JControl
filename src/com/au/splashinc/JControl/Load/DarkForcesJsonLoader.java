@@ -23,7 +23,7 @@ public class DarkForcesJsonLoader extends JsonLoader{
         json = new JSONObject();
     }
 
-    @Override
+    //@Override
     public void LoadConfig() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //JSON organised in [Button/Axis/POV],{[TypeofAction],[Value]}
@@ -46,26 +46,26 @@ f3- fleats - dpad left
 f4 - gasmask - dpad right
 f5 - headlamp - dpad up*/
         JSONArray simpleKey = new JSONArray();
-        simpleKey.add(getButtonJSON("Button 0", KeyEvent.VK_SPACE));
-        simpleKey.add(getButtonJSON("Button 2", KeyEvent.VK_E));
-        simpleKey.add(getButtonJSON("Button 8", KeyEvent.VK_F1));
-        simpleKey.add(getButtonJSON("Button 7", KeyEvent.VK_CAPS_LOCK));
-        simpleKey.add(getButtonJSON("Button 3", KeyEvent.VK_SHIFT));
-        simpleKey.add(getButtonJSON("Button 1", KeyEvent.VK_C));
-        simpleKey.add(getButtonJSON("X Axis -", KeyEvent.VK_A));
-        simpleKey.add(getButtonJSON("X Axis +", KeyEvent.VK_D));
-        simpleKey.add(getButtonJSON("Y Axis -", KeyEvent.VK_W));
-        simpleKey.add(getButtonJSON("Y Axis +", KeyEvent.VK_S));
-        simpleKey.add(getButtonJSON("Hat Switch 0 0.25", KeyEvent.VK_F5));
-        simpleKey.add(getButtonJSON("Hat Switch 0 0.5", KeyEvent.VK_F4));
-        simpleKey.add(getButtonJSON("Hat Switch 0 0.75", KeyEvent.VK_F2));
-        simpleKey.add(getButtonJSON("Hat Switch 0 1.0", KeyEvent.VK_F3));
-        simpleKey.add(getButtonJSON("Z Axis +", KeyEvent.VK_R));
-        simpleKey.add(getButtonJSON("Y Rotation +", KeyEvent.VK_PAGE_UP));
-        simpleKey.add(getButtonJSON("Y Rotation -", KeyEvent.VK_PAGE_DOWN));
+        simpleKey.add(GetButtonJSON("Button 0", KeyEvent.VK_SPACE));
+        simpleKey.add(GetButtonJSON("Button 2", KeyEvent.VK_E));
+        simpleKey.add(GetButtonJSON("Button 8", KeyEvent.VK_F1));
+        simpleKey.add(GetButtonJSON("Button 7", KeyEvent.VK_CAPS_LOCK));
+        simpleKey.add(GetButtonJSON("Button 3", KeyEvent.VK_SHIFT));
+        simpleKey.add(GetButtonJSON("Button 1", KeyEvent.VK_C));
+        simpleKey.add(GetButtonJSON("X Axis -", KeyEvent.VK_A));
+        simpleKey.add(GetButtonJSON("X Axis +", KeyEvent.VK_D));
+        simpleKey.add(GetButtonJSON("Y Axis -", KeyEvent.VK_W));
+        simpleKey.add(GetButtonJSON("Y Axis +", KeyEvent.VK_S));
+        simpleKey.add(GetButtonJSON("Hat Switch 0 0.25", KeyEvent.VK_F5));
+        simpleKey.add(GetButtonJSON("Hat Switch 0 0.5", KeyEvent.VK_F4));
+        simpleKey.add(GetButtonJSON("Hat Switch 0 0.75", KeyEvent.VK_F2));
+        simpleKey.add(GetButtonJSON("Hat Switch 0 1.0", KeyEvent.VK_F3));
+        simpleKey.add(GetButtonJSON("Z Axis +", KeyEvent.VK_R));
+        simpleKey.add(GetButtonJSON("Y Rotation +", KeyEvent.VK_PAGE_UP));
+        simpleKey.add(GetButtonJSON("Y Rotation -", KeyEvent.VK_PAGE_DOWN));
         JSONArray simpleMouse = new JSONArray();
-        simpleMouse.add(getButtonJSON("X Rotation", "LeftRight"));
-        simpleMouse.add(getButtonJSON("Z Axis -", InputEvent.BUTTON1_MASK));
+        simpleMouse.add(GetButtonJSON("X Rotation", "LeftRight"));
+        simpleMouse.add(GetButtonJSON("Z Axis -", InputEvent.BUTTON1_MASK));
 //JSONObject jo = new JSONObject();
         //jo.put("Button 0", KeyEvent.VK_SPACE);
         //jo.put("Button 2", KeyEvent.VK_E);
@@ -99,7 +99,12 @@ f5 - headlamp - dpad up*/
 
         controllerDetail = json.toJSONString();
         System.out.println(json.toJSONString());
-        //JsonLoaderHelper jsh = new JsonLoaderHelper(json);
-        populateMaps(json);
+        JsonLoaderHelper jsh = new JsonLoaderHelper(json);
+        
+        keyDownMap = jsh.getKeyDownMap();
+        keyUpMap = jsh.getKeyUpMap();
+        mouseMoveMap = jsh.getMouseMoveMap();
+        mouseButtonDownMap = jsh.getMouseButtonDownMap();
+        mouseButtonUpMap = jsh.getMouseButtonUpMap();
     }  
 }
