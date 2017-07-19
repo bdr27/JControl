@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
@@ -26,14 +27,15 @@ import org.json.simple.JSONObject;
  * @author bob_l
  */
 public class JsonLoaderHelper {
+
     private JSONObject jo;
     private Map<String, AButtonDownUpExecute> keyDownMap;
     private Map<String, AButtonDownUpExecute> keyUpMap;
     private Map<String, AMouseMoveExecute> mouseMoveMap;
     private Map<String, AButtonDownUpExecute> mouseButtonDownMap;
     private Map<String, AButtonDownUpExecute> mouseButtonUpMap;
-    
-    public JsonLoaderHelper(JSONObject jo){
+
+    public JsonLoaderHelper(JSONObject jo) {
         this.jo = jo;
         keyDownMap = new HashMap<>();
         keyUpMap = new HashMap<>();
@@ -42,69 +44,78 @@ public class JsonLoaderHelper {
         mouseButtonUpMap = new HashMap<>();
         populateMaps();
     }
-    
-    public Map<String, AButtonDownUpExecute> getKeyDownMap(){
+
+    public Map<String, AButtonDownUpExecute> getKeyDownMap() {
         return keyDownMap;
     }
-    
-    public Map<String, AButtonDownUpExecute> getKeyUpMap(){
+
+    public Map<String, AButtonDownUpExecute> getKeyUpMap() {
         return keyUpMap;
     }
-    
-    public Map<String, AMouseMoveExecute> getMouseMoveMap(){
+
+    public Map<String, AMouseMoveExecute> getMouseMoveMap() {
         return mouseMoveMap;
     }
-    
-    public Map<String, AButtonDownUpExecute> getMouseButtonDownMap(){
+
+    public Map<String, AButtonDownUpExecute> getMouseButtonDownMap() {
         return mouseButtonDownMap;
     }
-    
-    public Map<String, AButtonDownUpExecute> getMouseButtonUpMap(){
+
+    public Map<String, AButtonDownUpExecute> getMouseButtonUpMap() {
         return mouseButtonUpMap;
     }
-    
-    private void populateMaps(){
+
+    private void populateMaps() {
         Set keys = jo.keySet();
         //Collection co = jo.values();
         Object[] objKey = keys.toArray();
-        for(Object key : objKey){
-            System.out.println("Key: " + key.toString());
-            JSONObject value = (JSONObject) jo.get(key);
-            if(value.containsKey(ControllerAction.SIMPLE_BUTTON.toString())){
-                int button = (int)value.get(ControllerAction.SIMPLE_BUTTON.toString());
-                AButtonDownUpExecute down = new SimpleKeyPress(button);
-                keyDownMap.put(key.toString(), down);
-                AButtonDownUpExecute up = new SimpleKeyRelease(button);
-                keyUpMap.put(key.toString(), up);                
-            }
-            else if(value.containsKey(ControllerAction.SIMPLE_MOUSE.toString())){
-                Object obj = value.get(ControllerAction.SIMPLE_MOUSE.toString());
-                try{
-                    int mouse = Integer.parseInt(obj.toString());
-                    if(mouse != 224){
-                        AButtonDownUpExecute down = new SimpleMousePress(mouse);
-                        mouseButtonDownMap.put(key.toString(), down);
-                        AButtonDownUpExecute up = new SimpleMouseRelease(mouse);
-                        mouseButtonUpMap.put(key.toString(), up);
+        for (Object actionType : objKey) {
+            System.out.println("Key: " + actionType.toString());
+            JSONArray values = (JSONArray) jo.get(actionType);
+            if (actionType.equals(ControllerAction.SIMPLE_BUTTON.toString())) {
+                for (Object arrayValue : values) {
+                    JSONObject jsonObject = (JSONObject) arrayValue;
+                    for (Object buttonName : jsonObject.keySet()) {
+                        int buttonValue = (int) jsonObject.get(buttonName);
+                        System.out.println(buttonName + ": " + buttonValue);
+                        AButtonDownUpExecute down = new SimpleKeyPress(buttonValue);
+                        keyDownMap.put(buttonName.toString(), down);
+                        AButtonDownUpExecute up = new SimpleKeyRelease(buttonValue);
+                        keyUpMap.put(buttonName.toString(), up);
                     }
-                }catch(NumberFormatException ex){
-                    String mouse = obj.toString();
-                    String moveDirection = "";
-                    switch(mouse){
-                        case "LeftRight":
-                            moveDirection = "x";
-                            break;
-                        case "UpDown":
-                            moveDirection = "y";
-                            break;
-                        default:
-                            moveDirection = "unknown";
-                            break;
-                    }
-                    if(moveDirection.equals("unknown")){
-                    } else {
-                        AMouseMoveExecute mme = new SimpleMouseMove(moveDirection);
-                        mouseMoveMap.put(key.toString(), mme);
+                }
+            } else if (actionType.equals(ControllerAction.SIMPLE_MOUSE.toString())) {
+                for (Object arrayValue : values) {
+                    JSONObject jsonObject = (JSONObject) arrayValue;
+                    for (Object buttonName : jsonObject.keySet()) {
+                        String mouseKey = jsonObject.get(buttonName).toString();
+                        try {
+                            int buttonValue = Integer.parseInt(mouseKey);
+                            if (buttonValue != 224) {
+                                AButtonDownUpExecute down = new SimpleMousePress(buttonValue);
+                                mouseButtonDownMap.put(buttonName.toString(), down);
+                                AButtonDownUpExecute up = new SimpleMouseRelease(buttonValue);
+                                mouseButtonUpMap.put(buttonName.toString(), up);
+                            }
+                        } catch (NumberFormatException ex) {
+                            String moveDirection = "";
+                            switch (mouseKey) {
+                                case "LeftRight":
+                                    moveDirection = "x";
+                                    break;
+                                case "UpDown":
+                                    moveDirection = "y";
+                                    break;
+                                default:
+                                    moveDirection = "unknown";
+                                    break;
+                            }
+                            if (moveDirection.equals("unknown")) {
+                            } else {
+                                AMouseMoveExecute mme = new SimpleMouseMove(moveDirection);
+                                mouseMoveMap.put(buttonName.toString(), mme);
+                            }
+                        }
                     }
                 }
             }

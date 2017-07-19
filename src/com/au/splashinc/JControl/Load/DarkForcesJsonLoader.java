@@ -24,6 +24,7 @@ public class DarkForcesJsonLoader extends JsonLoader{
     }
 
     //@Override
+    @Override
     public void LoadConfig() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //JSON organised in [Button/Axis/POV],{[TypeofAction],[Value]}
