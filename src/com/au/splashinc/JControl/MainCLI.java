@@ -33,7 +33,7 @@ public class MainCLI {
 
     public static void main(String[] args) throws AWTException, InterruptedException {
         JunkMain junk = new JunkMain();
-        junk.Execute();
+        junk.execute();
 //controllerMain();
     }
 

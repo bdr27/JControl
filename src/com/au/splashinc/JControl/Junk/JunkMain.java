@@ -13,7 +13,11 @@ import com.google.gson.GsonBuilder;
  * @author Brendan
  */
 public class JunkMain {
-    public void Execute(){
+    public void execute(){
+        albumsTest();
+    }
+    
+    private void albumsTest(){
         Albums albums = new Albums();
         albums.title = "Free Music Archive - Albums";
         albums.message = "";
