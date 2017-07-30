@@ -120,8 +120,6 @@ public class JsonLoaderHelper {
                 }
             }
         }
-        
-        //Test Push
         System.out.println("Hello World");
     }
 }
