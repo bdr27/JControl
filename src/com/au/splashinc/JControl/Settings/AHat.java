@@ -11,4 +11,7 @@ package com.au.splashinc.JControl.Settings;
  */
 public abstract class AHat {
     public int hat;
+    public ActionType actionType;
+    
+    public abstract void execute(double value);
 }

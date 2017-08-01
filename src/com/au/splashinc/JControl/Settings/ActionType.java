@@ -9,11 +9,6 @@ package com.au.splashinc.JControl.Settings;
  *
  * @author Brendan
  */
-public class SimpleButton extends AButton{
-
-    @Override
-    public void execute() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+public enum ActionType {
+    Keyboard, MouseX, MouseY, MouseButton
 }

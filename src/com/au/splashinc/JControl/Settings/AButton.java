@@ -11,5 +11,8 @@ package com.au.splashinc.JControl.Settings;
  */
 public abstract class AButton {
     public int button;
-
+    public ActionType actionType;
+    protected Boolean down;
+    
+    public abstract void execute();
 }

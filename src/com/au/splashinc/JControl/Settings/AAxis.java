@@ -11,4 +11,7 @@ package com.au.splashinc.JControl.Settings;
  */
 public abstract class AAxis {
     public String axis;
+    public ActionType actionType;
+    
+    public abstract void execute(double value);
 }
