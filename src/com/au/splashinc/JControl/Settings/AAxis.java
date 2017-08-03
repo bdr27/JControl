@@ -5,6 +5,9 @@
  */
 package com.au.splashinc.JControl.Settings;
 
+import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
+import com.au.splashinc.JControl.JController.SimpleKeyPress;
+
 /**
  *
  * @author Brendan
@@ -13,5 +16,7 @@ public abstract class AAxis {
     public String axis;
     public ActionType actionType;
     
-    public abstract void execute(double value);
+    public abstract AButtonDownUpExecute getButtonPress();
+    public abstract AButtonDownUpExecute getButtonRelease();
+    public abstract AButtonDownUpExecute getMouseMove();
 }

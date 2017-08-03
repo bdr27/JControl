@@ -5,6 +5,8 @@
  */
 package com.au.splashinc.JControl.Settings;
 
+import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
+
 /**
  *
  * @author Brendan
@@ -12,7 +14,17 @@ package com.au.splashinc.JControl.Settings;
 public class SimpleButton extends AButton{
 
     @Override
-    public void execute() {
+    public AButtonDownUpExecute getButtonPress() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public AButtonDownUpExecute getButtonRelease() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public AButtonDownUpExecute getMouseMove() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

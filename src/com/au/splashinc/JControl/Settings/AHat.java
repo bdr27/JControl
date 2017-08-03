@@ -5,6 +5,8 @@
  */
 package com.au.splashinc.JControl.Settings;
 
+import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
+
 /**
  *
  * @author Brendan
@@ -13,5 +15,7 @@ public abstract class AHat {
     public int hat;
     public ActionType actionType;
     
-    public abstract void execute(double value);
+    public abstract AButtonDownUpExecute getButtonPress();
+    public abstract AButtonDownUpExecute getButtonRelease();
+    public abstract AButtonDownUpExecute getMouseMove();
 }
