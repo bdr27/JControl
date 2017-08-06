@@ -7,6 +7,8 @@ package com.au.splashinc.JControl.Junk;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -14,7 +16,8 @@ import com.google.gson.GsonBuilder;
  */
 public class JunkMain {
     public void execute(){
-        albumsTest();
+        //albumsTest();
+        dictionaryTest();
     }
     
     private void albumsTest(){
@@ -25,8 +28,21 @@ public class JunkMain {
         albums.total_pages = 2252;
         albums.page = 1;
         albums.limit = "5";
+        Gson gson = getGson();
+        System.out.println(gson.toJson(albums));
+    }
+    
+    private void dictionaryTest(){
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Test", 0);
+        map.put("Another Test", 12);
+        Gson gson = getGson();
+        System.out.println(gson.toJson(map));
+    }
+    
+    private Gson getGson(){
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        System.out.println(gson.toJson(albums));
+        return gson;
     }
 }
