@@ -9,23 +9,15 @@ package com.au.splashinc.JControl.JController;
  *
  * @author bob_l
  */
-public class ButtonDownUpSimpleMouseButton extends AButtonDownUpExecute{
+public class SimpleMousePress extends AButtonDownUpExecute{
     private int keycode;
     
-    public ButtonDownUpSimpleMouseButton(int keycode){
+    public SimpleMousePress(int keycode){
         this.keycode = keycode;
     }
-
     @Override
-    protected void actionKeyDown() {
-        System.out.println("mouse down: " + keycode);
+    protected void actionExecute() {
         rob.mousePress(keycode);
-    }
-
-    @Override
-    protected void actionKeyUp() {
-        System.out.println("mouse up: " + keycode);
-        rob.mouseRelease(keycode);
     }
     
 }

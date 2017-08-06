@@ -13,26 +13,16 @@ import java.awt.Robot;
  * @author bob_l
  */
 public abstract class AButtonDownUpExecute {
-    protected Robot rob;
+    protected static Robot rob;
     public AButtonDownUpExecute(){
     }
     
-    protected abstract void actionKeyDown();
-    protected abstract void actionKeyUp();
+    protected abstract void actionExecute();
     
-    public void executeKeyDown() throws AWTException{
-        prepareRob();
-        actionKeyDown();
-    }
-    
-    private void prepareRob() throws AWTException{
+    public void execute() throws AWTException{
         if(rob == null){
             rob = new Robot();
         }
-    }
-    
-    public void executeKeyUp() throws AWTException{
-        prepareRob();
-        actionKeyUp();
+        actionExecute();
     }
 }

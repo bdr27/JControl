@@ -8,10 +8,10 @@ package com.au.splashinc.JControl;
 import com.au.splashinc.JControl.JController.AControllerAction;
 import com.au.splashinc.JControl.JController.SimpleControllerAction;
 import com.au.splashinc.JControl.JController.MyController;
+import com.au.splashinc.JControl.Junk.JunkMain;
 import com.au.splashinc.JControl.Load.AControllerLoader;
 import com.au.splashinc.JControl.Load.DarkForcesJsonLoader;
 import com.au.splashinc.JControl.Util.MyControllers;
-import com.sun.glass.events.KeyEvent;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.util.ArrayList;
@@ -31,12 +31,18 @@ import org.json.simple.JSONObject;
  */
 public class MainCLI {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AWTException, InterruptedException {
+        JunkMain junk = new JunkMain();
+        junk.execute();
+//controllerMain();
+    }
+
+    private static void controllerMain() throws InterruptedException {
         MyControllers myControllers = new MyControllers();
         ArrayList<Controller> controllers = myControllers.GetControllers();
         myControllers = new MyControllers(true);
         ArrayList<Controller> controllers2 = myControllers.GetControllers();
-        
+
         System.out.println("Let's do this");
         System.out.println("Length without all USB: " + controllers.size());
         System.out.println("Length with all USB: " + controllers2.size());
@@ -46,18 +52,14 @@ public class MainCLI {
         //obj.put("Hello", "World");
         //System.out.println("JSON String: " + obj.toJSONString());
         if (controllers.size() > 0) {
-            try{
-            MyController controller = new MyController(controllers.get(0));
-            AControllerAction buttonAction = new SimpleControllerAction(controller, mjs);
-            while (true) {
-                buttonAction.Execute();            
-                try {
+            try {
+                MyController controller = new MyController(controllers.get(0));
+                AControllerAction buttonAction = new SimpleControllerAction(controller, mjs);
+                while (true) {
+                    buttonAction.Execute();
                     Thread.sleep(20);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(MainCLI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            }catch(AWTException ex){
+            } catch (AWTException ex) {
                 System.out.println(ex.toString());
             }
         }

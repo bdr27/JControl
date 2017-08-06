@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/Load/JsonLoader.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/Load/JsonLoaderHelper.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/Load/DarkForcesJsonLoader.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/JController/AButtonDownUpExecute.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/JController/SimpleControllerAction.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/JController/MyController.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/JController/AControllerAction.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/Util/MyVariables.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/MainCLI.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/Load/AControllerLoader.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/Util/MyControllers.java</file>
-            <file>file:/D:/Users/bob_l/Documents/GitHub/JControl/src/com/au/splashinc/JControl/JController/AMouseMoveExecute.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
