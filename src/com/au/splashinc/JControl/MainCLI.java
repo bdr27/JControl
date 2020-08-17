@@ -32,9 +32,9 @@ import org.json.simple.JSONObject;
 public class MainCLI {
 
     public static void main(String[] args) throws AWTException, InterruptedException {
-        JunkMain junk = new JunkMain();
-        junk.execute();
-//controllerMain();
+        //JunkMain junk = new JunkMain();
+        //junk.execute();
+        controllerMain();
     }
 
     private static void controllerMain() throws InterruptedException {

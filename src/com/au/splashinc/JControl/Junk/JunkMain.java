@@ -7,6 +7,7 @@ package com.au.splashinc.JControl.Junk;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,9 +18,14 @@ import java.util.Map;
 public class JunkMain {
     public void execute(){
         //albumsTest();
-        dictionaryTest();
+        //dictionaryTest();
+        helloWorld();
     }
     
+    private static void helloWorld(){
+        System.out.println("Hello World");
+    }
+
     private void albumsTest(){
         Albums albums = new Albums();
         albums.title = "Free Music Archive - Albums";

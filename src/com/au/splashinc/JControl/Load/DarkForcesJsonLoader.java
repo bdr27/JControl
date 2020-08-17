@@ -6,7 +6,7 @@
 package com.au.splashinc.JControl.Load;
 
 import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
-import com.sun.glass.events.MouseEvent;
+import java.awt.event.MouseEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import org.json.simple.JSONArray;
