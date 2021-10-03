@@ -37,9 +37,9 @@ public class SimpleControllerAction extends AControllerAction {
             String key = "";
             Float value = 0.0f;
             if(next instanceof Map.Entry<?,?>){
-                var nextMap = (Map.Entry<?,?>) next;
-                var keyGeneric = nextMap.getKey();
-                var valueGeneric = nextMap.getValue();
+                Map.Entry<?,?> nextMap = (Map.Entry<?,?>) next;
+                Object keyGeneric = nextMap.getKey();
+                Object valueGeneric = nextMap.getValue();
                 if(keyGeneric instanceof String){
                     key = (String) keyGeneric;
                 }

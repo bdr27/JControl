@@ -54,8 +54,8 @@ public abstract class AControllerAction {
     }
 
     private ArrayList<String> getPreviousButtons() {
-        var clonedButtonsGeneric = currentButtonsDown.clone();
-        ArrayList<String> toReturn = new ArrayList<String>();
+        Object clonedButtonsGeneric = currentButtonsDown.clone();
+        ArrayList<String> toReturn = new ArrayList<>();
         if(clonedButtonsGeneric instanceof ArrayList<?>){
             ArrayList<?> clonedButtons = (ArrayList<?>) clonedButtonsGeneric;
             for(int i = 0; i < clonedButtons.size(); i++){
