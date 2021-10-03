@@ -6,7 +6,6 @@
 package com.au.splashinc.JControl.Settings;
 
 import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
-import com.au.splashinc.JControl.JController.SimpleKeyPress;
 
 /**
  *

@@ -9,7 +9,6 @@ import com.au.splashinc.JControl.JController.AButtonDownUpExecute;
 import com.au.splashinc.JControl.JController.AMouseMoveExecute;
 import java.util.HashMap;
 import java.util.Map;
-import org.json.simple.JSONObject;
 
 /**
  *

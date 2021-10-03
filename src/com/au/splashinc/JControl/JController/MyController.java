@@ -106,28 +106,28 @@ public class MyController {
             }
 
             previousButtonsDown = setStringArrayList(previousButtonsDown);
-            previousButtonsDown = new ArrayList(buttonsDown);
+            previousButtonsDown = new ArrayList<String>(buttonsDown);
         }
         return validPoll;
     }
 
     public Map<String, Float> getAxis() {
         if (axis == null) {
-            axis = new HashMap();
+            axis = new HashMap<String,Float>();
         }
         return axis;
     }
 
     public ArrayList<String> getButtonsDown() {
         if (buttonsDown == null) {
-            buttonsDown = new ArrayList();
+            buttonsDown = new ArrayList<String>();
         }
         return buttonsDown;
     }
 
     public ArrayList<Float> getHatSwitches() {
         if (hatSwitches == null) {
-            hatSwitches = new ArrayList();
+            hatSwitches = new ArrayList<Float>();
         }
         return hatSwitches;
     }
@@ -152,7 +152,7 @@ public class MyController {
         if (map != null) {
             map.clear();
         } else {
-            map = new HashMap();
+            map = new HashMap<String,Float>();
         }
         return map;
     }
@@ -161,7 +161,7 @@ public class MyController {
         if (arrayList != null) {
             arrayList.clear();
         } else {
-            arrayList = new ArrayList();
+            arrayList = new ArrayList<String>();
         }
         return arrayList;
     }
@@ -170,7 +170,7 @@ public class MyController {
         if (arrayList != null) {
             arrayList.clear();
         } else {
-            arrayList = new ArrayList();
+            arrayList = new ArrayList<Float>();
         }
         return arrayList;
     }

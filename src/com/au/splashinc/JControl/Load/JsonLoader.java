@@ -5,14 +5,10 @@
  */
 package com.au.splashinc.JControl.Load;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -34,7 +30,10 @@ public abstract class JsonLoader extends AControllerLoader{
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader(location));
-            JSONObject jsonObject = (JSONObject) obj;
+            if(obj instanceof JSONObject){
+                JSONObject jsonObject = (JSONObject) obj;
+                jsonObject.toString();
+            }
             //Do stuff probably in another class
         } catch (IOException | ParseException ex) {
             Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);

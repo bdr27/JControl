@@ -10,6 +10,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static com.au.splashinc.JControl.Util.MyVariables.MY_DEBUG;
@@ -30,11 +31,22 @@ public class SimpleControllerAction extends AControllerAction {
     //Method needs to be cleaned up but this is the basics of what I need to dorrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr
     @Override
     protected void ExecuteAxis() {
-        Iterator it = controllerAxis.entrySet().iterator();
+        Iterator<Entry<String,Float>> it = controllerAxis.entrySet().iterator();
         while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry) it.next();
-            String key = (String) pair.getKey();
-            Float value = (Float) pair.getValue();
+            Object next = it.next();
+            String key = "";
+            Float value = 0.0f;
+            if(next instanceof Map.Entry<?,?>){
+                var nextMap = (Map.Entry<?,?>) next;
+                var keyGeneric = nextMap.getKey();
+                var valueGeneric = nextMap.getValue();
+                if(keyGeneric instanceof String){
+                    key = (String) keyGeneric;
+                }
+                if(valueGeneric instanceof Float){
+                    value = (Float) valueGeneric;
+                }
+            }
             if(MY_DEBUG){
                 System.out.println("Key: " + key + ", Value: " + value + ", Deadzone: " + deadzone);
             }

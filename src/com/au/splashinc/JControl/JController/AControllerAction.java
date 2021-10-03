@@ -41,7 +41,7 @@ public abstract class AControllerAction {
     // and see what we need to do whether it's a button down on whatnot
     private void ExecuteButtonAction() {
         try {
-            previousButtonsDown = (ArrayList<String>) currentButtonsDown.clone();
+            previousButtonsDown = getPreviousButtons();
         } catch (final Exception ex) {
             System.out.println("Error converting current buttons to previous buttons");
             System.err.println(ex.toString());
@@ -51,6 +51,22 @@ public abstract class AControllerAction {
         ExecuteButtonsDown();
         ExecuteHatSwitches();
         ExecuteButtonsUp();
+    }
+
+    private ArrayList<String> getPreviousButtons() {
+        var clonedButtonsGeneric = currentButtonsDown.clone();
+        ArrayList<String> toReturn = new ArrayList<String>();
+        if(clonedButtonsGeneric instanceof ArrayList<?>){
+            ArrayList<?> clonedButtons = (ArrayList<?>) clonedButtonsGeneric;
+            for(int i = 0; i < clonedButtons.size(); i++){
+                Object buttonGeneric = clonedButtons.get(i);
+                if(buttonGeneric instanceof String){
+                    String buttonValue = (String) buttonGeneric;
+                    toReturn.add(buttonValue);
+                }
+            }
+        }
+        return toReturn;
     }
     
     protected abstract void ExecuteAxis();

@@ -17,8 +17,8 @@ import java.util.Map;
  */
 public class JunkMain {
     public void execute(){
-        //albumsTest();
-        //dictionaryTest();
+        albumsTest();
+        dictionaryTest();
         helloWorld();
     }
     

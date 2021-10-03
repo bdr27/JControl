@@ -12,11 +12,8 @@ import com.au.splashinc.JControl.JController.SimpleKeyRelease;
 import com.au.splashinc.JControl.JController.SimpleMouseMove;
 import com.au.splashinc.JControl.JController.SimpleMousePress;
 import com.au.splashinc.JControl.JController.SimpleMouseRelease;
-import com.au.splashinc.JControl.Util.MyVariables;
 import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import org.json.simple.JSONArray;
@@ -67,7 +64,6 @@ public class JsonLoaderHelper {
 
     private void populateMaps() {
         Set keys = jo.keySet();
-        //Collection co = jo.values();
         Object[] objKey = keys.toArray();
         for (Object actionType : objKey) {
             System.out.println("Key: " + actionType.toString());

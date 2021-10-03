@@ -8,22 +8,12 @@ package com.au.splashinc.JControl;
 import com.au.splashinc.JControl.JController.AControllerAction;
 import com.au.splashinc.JControl.JController.SimpleControllerAction;
 import com.au.splashinc.JControl.JController.MyController;
-import com.au.splashinc.JControl.Junk.JunkMain;
 import com.au.splashinc.JControl.Load.AControllerLoader;
 import com.au.splashinc.JControl.Load.DarkForcesJsonLoader;
 import com.au.splashinc.JControl.Util.MyControllers;
 import java.awt.AWTException;
-import java.awt.Robot;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import net.java.games.input.Controller;
-import net.java.games.input.Controller.Type;
-import net.java.games.input.ControllerEnvironment;
-import net.java.games.input.EventQueue;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  *

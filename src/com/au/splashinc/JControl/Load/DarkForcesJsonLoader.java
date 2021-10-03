@@ -6,7 +6,6 @@
 package com.au.splashinc.JControl.Load;
 
 import com.au.splashinc.JControl.Util.MyVariables.ControllerAction;
-import java.awt.event.MouseEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import org.json.simple.JSONArray;
@@ -66,7 +65,7 @@ f5 - headlamp - dpad up*/
         simpleKey.add(GetJSONObject("Y Rotation -", KeyEvent.VK_PAGE_DOWN));
         JSONArray simpleMouse = new JSONArray();
         simpleMouse.add(GetJSONObject("X Rotation", "LeftRight"));
-        simpleMouse.add(GetJSONObject("Z Axis -", InputEvent.BUTTON1_MASK));
+        simpleMouse.add(GetJSONObject("Z Axis -", InputEvent.BUTTON1_DOWN_MASK));
 //JSONObject jo = new JSONObject();
         //jo.put("Button 0", KeyEvent.VK_SPACE);
         //jo.put("Button 2", KeyEvent.VK_E);

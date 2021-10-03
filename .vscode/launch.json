@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch MainCLI",
+            "request": "launch",
+            "mainClass": "com.au.splashinc.JControl.MainCLI",
+            "projectName": "JControl_8326fd0d"
+        },
+        {
+            "type": "java",
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}"
